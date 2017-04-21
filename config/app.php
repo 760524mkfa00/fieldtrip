@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Trip Connect'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://fieldtrip.sd23ops.dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Fieldtrip\Providers\AppServiceProvider::class,
+        Fieldtrip\Providers\AuthServiceProvider::class,
+        // Fieldtrip\Providers\BroadcastServiceProvider::class,
+        Fieldtrip\Providers\EventServiceProvider::class,
+        Fieldtrip\Providers\RouteServiceProvider::class,
 
     ],
 
