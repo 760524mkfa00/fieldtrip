@@ -27,12 +27,9 @@ class ZoneController extends Controller
     {
         $data = $request->only('zone');
 
-//        $data['slug'] = str_slug($data['title']);
-//        $data['user_id'] = Auth::user()->id;
-
         $zone = Zone::create($data);
-
         return redirect()->route('edit_zone', ['id' => $zone->id]);
+
     }
 
     public function edit(Zone $zone)

@@ -14,7 +14,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Fieldtrip\Model' => 'Fieldtrip\Policies\ModelPolicy',
+        'Fieldtrip\Zone' => 'Fieldtrip\Policies\ZonePolicy',
+        'Fieldtrip\Route' => 'Fieldtrip\Policies\RoutePolicy',
     ];
 
     /**
@@ -26,22 +27,22 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $this->registerZonePolicies();
+//        $this->registerZonePolicies();
     }
 
-    public function registerZonePolicies()
-    {
-        Gate::define('create-zones', function ($user) {
-            return $user->hasAccess(['create-zones']);
-        });
-        Gate::define('update-zones', function ($user, Zone $zone) {
-            return $user->hasAccess(['update-zones']);
-        });
+//    public function registerZonePolicies()
+//    {
+//        Gate::define('create-zones', function ($user) {
+//            return $user->hasAccess(['create-zones']);
+//        });
+//        Gate::define('update-zones', function ($user, Zone $zone) {
+//            return $user->hasAccess(['update-zones']);
+//        });
 //        Gate::define('publish-zone', function ($user) {
 //            return $user->hasAccess(['publish-zone']);
 //        });
 //        Gate::define('see-all-drafts', function ($user) {
 //            return $user->inRole('editor');
 //        });
-    }
+//    }
 }
