@@ -18,7 +18,8 @@ class RouteController extends Controller
 
     public function create()
     {
-        return view('routes.create');
+        return view('routes.create')
+            ->withRoute(new Route());
     }
 
     public function store(StoreRouteRequest $request)
@@ -42,6 +43,21 @@ class RouteController extends Controller
         $data = $request->only('zone_id', 'route_number', 'end_time_am', 'end_point_am', 'start_time_pm', 'start_point_pm', 'end_time_pm');
         $route->fill($data)->save();
         return back();
+    }
+
+    public function destroy(Route $route)
+    {
+
+        try {
+            $route->delete();
+        }
+        catch(\Exception $e)
+        {
+            return \Redirect::back()->withErrors('You cannot delete this item, it may has information attached to it. Please remove that information first');
+        }
+
+        return \Redirect::route('list_routes')->with('flash_message', 'Route has been removed.');
+
     }
 
 }

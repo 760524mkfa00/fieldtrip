@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', 'ZoneController@index');
+//Route::get('/', 'ZoneController@index');
 
 
 Route::group(['prefix' => 'zones'], function () {
@@ -37,6 +37,9 @@ Route::group(['prefix' => 'zones'], function () {
         ->middleware('can:update,zone');
     Route::post('/edit/{zone}', 'ZoneController@update')
         ->name('update_zone')
+        ->middleware('can:update,zone');
+    Route::get('/remove/{zone}', 'ZoneController@destroy')
+        ->name('remove_zone')
         ->middleware('can:update,zone');
 
 });
@@ -59,5 +62,7 @@ Route::group(['prefix' => 'routes'], function () {
     Route::post('/edit/{route}', 'RouteController@update')
         ->name('update_route')
         ->middleware('can:update,route');
-
+    Route::get('/remove/{route}', 'RouteController@destroy')
+        ->name('remove_route')
+        ->middleware('can:update,route');
 });

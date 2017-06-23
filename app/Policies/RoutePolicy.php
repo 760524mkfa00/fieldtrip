@@ -40,7 +40,7 @@ class RoutePolicy
      * @param  \Fieldtrip\Route  $route
      * @return mixed
      */
-    public function update(User $user, Route $route)
+    public function update(User $user)
     {
         return $user->hasAccess(['update-zones']);
     }

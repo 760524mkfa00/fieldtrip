@@ -45,4 +45,19 @@ class ZoneController extends Controller
         return back();
     }
 
+    public function destroy(Zone $zone)
+    {
+
+        try {
+            $zone->delete();
+        }
+        catch(\Exception $e)
+        {
+            return \Redirect::back()->withErrors('You cannot delete this item, it may has information attached to it. Please remove that information first');
+        }
+
+        return \Redirect::route('list_zones')->with('flash_message', 'Zone has been removed.');
+
+    }
+
 }

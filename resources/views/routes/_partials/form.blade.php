@@ -17,11 +17,10 @@
     <label for="zone_id" class="col-md-4 control-label">Zone</label>
 
     <div class="col-md-6">
-
         <select name="zone_id" id="zone_id" class="form-control">
             <option value="">Select Zone...</option>
             @foreach($zones as $zone)
-                <option value="{{ $zone->id }}" {{ old('zone_id') == $zone->id ? 'selected' : '' }}>
+                <option value="{{ $zone->id }}" {{ $route->zone_id == $zone->id ? 'selected' : '' }}>
                     {{ $zone->zone }}
                 </option>
             @endforeach
