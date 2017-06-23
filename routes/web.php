@@ -66,3 +66,22 @@ Route::group(['prefix' => 'routes'], function () {
         ->name('remove_route')
         ->middleware('can:update,route');
 });
+
+Route::group(['prefix' => 'users'], function () {
+
+    Route::get('/', 'UserController@index')
+        ->name('list_users');
+
+
+    // TODO: Replace with the register URL
+
+    Route::get('/edit/{user}', 'UserController@edit')
+        ->name('edit_user')
+        ->middleware('can:update,user');
+    Route::post('/edit/{user}', 'UserController@update')
+        ->name('update_user')
+        ->middleware('can:update,user');
+    Route::get('/remove/{user}', 'UserController@destroy')
+        ->name('remove_user')
+        ->middleware('can:update,user');
+});

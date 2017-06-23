@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'Fieldtrip\Zone' => 'Fieldtrip\Policies\ZonePolicy',
         'Fieldtrip\Route' => 'Fieldtrip\Policies\RoutePolicy',
+        'Fieldtrip\User' => 'Fieldtrip\Policies\UserPolicy',
     ];
 
     /**

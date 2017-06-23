@@ -3,7 +3,6 @@
 namespace Fieldtrip\Policies;
 
 use Fieldtrip\User;
-use Fieldtrip\Zone;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ZonePolicy
@@ -37,10 +36,9 @@ class ZonePolicy
      * Determine whether the user can update the zone.
      *
      * @param  \Fieldtrip\User  $user
-     * @param  \Fieldtrip\Zone  $zone
      * @return mixed
      */
-    public function update(User $user, Zone $zone)
+    public function update(User $user)
     {
         return $user->hasAccess(['update-zones']);
     }

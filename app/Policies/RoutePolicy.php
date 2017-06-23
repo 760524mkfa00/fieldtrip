@@ -30,7 +30,7 @@ class RoutePolicy
      */
     public function create(User $user)
     {
-        return $user->hasAccess(['create-zones']);
+        return $user->hasAccess(['create-route']);
     }
 
     /**
@@ -42,7 +42,7 @@ class RoutePolicy
      */
     public function update(User $user)
     {
-        return $user->hasAccess(['update-zones']);
+        return $user->hasAccess(['update-route']);
     }
 
     /**

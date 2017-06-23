@@ -19,26 +19,28 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                &nbsp;<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones <span class="caret"></span></a>
+                @if (! Auth::guest())
+                    &nbsp;<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones <span class="caret"></span></a>
 
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="{{ route('list_zones') }}">Zones</a>
-                        </li>
-                    </ul>
-                </li>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('list_zones') }}">Zones</a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes <span class="caret"></span></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes <span class="caret"></span></a>
 
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="{{ route('list_routes') }}">Routes</a>
-                        </li>
-                    </ul>
-                </li>
-
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('list_routes') }}">Routes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('list_users') }}">Users</a></li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -46,7 +48,7 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
