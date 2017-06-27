@@ -4,6 +4,8 @@ namespace Fieldtrip\Http\Controllers;
 
 use Fieldtrip\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Fieldtrip\Http\Requests\UpdateUser as UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::all();
+        $users = User::with('roles')->get();
 
         return view('users.index')
             ->withUsers($users);
@@ -54,8 +56,11 @@ class UserController extends Controller
     public function edit(user $user)
     {
 
+        $current = $user->roles()->first();
+
         return view('users.edit')
-            ->withUser($user);
+            ->withUser($user)
+            ->withCurrent($current);
     }
 
     /**
@@ -65,9 +70,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, user $user)
     {
-        //
+        $data = $request->only('first_name', 'last_name', 'email');
+        $user->fill($data)->save();
+
+        $user->roles()->sync($request->get('role'));
+
+        return redirect()->route('list_users');
     }
 
     /**
@@ -76,8 +86,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+
+        if(User::count() < 2) return \Redirect::back()->withErrors('Trip Connect needs at least 1 user.');
+
+        try {
+            $user->delete();
+        }
+        catch(\Exception $e)
+        {
+            return \Redirect::back()->withErrors('That\'s is not going to happen anytime soon, it would seem this user is being used with other data.');
+        }
+
+        return \Redirect::route('list_users')->with('flash_message', 'User has been removed.');
     }
 }

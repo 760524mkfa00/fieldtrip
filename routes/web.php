@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/', 'ZoneController@index');
+Route::get('/home', 'HomeController@index');
+
+
 
 
 Route::group(['prefix' => 'zones'], function () {

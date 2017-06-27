@@ -4,6 +4,8 @@ namespace Fieldtrip\Http\Controllers\Auth;
 
 use Fieldtrip\Role;
 use Fieldtrip\User;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Fieldtrip\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/users';
 
     /**
      * Create a new controller instance.
@@ -37,7 +39,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+        $this->middleware('can:update,Fieldtrip\User');
     }
 
     /**
@@ -81,5 +84,15 @@ class RegisterController extends Controller
     {
         $roles = Role::orderBy('name')->pluck('name', 'id');
         return view('auth.register', compact('roles'));
+    }
+
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return redirect($this->redirectPath());
     }
 }

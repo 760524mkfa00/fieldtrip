@@ -80,7 +80,7 @@
                             <div class="col-md-6">
                                 <select id="role" class="form-control" name="role" required>
                                     @foreach($roles as $id => $role)
-                                        <option value="{{$id}}">{{$role}}</option>
+                                        <option value="{{$id}}">{{$role->name}}</option>
                                     @endforeach
                                 </select>
 

@@ -7,6 +7,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Users
+                        @can('create', Fieldtrip\User::class)
+                            <a class="pull-right btn btn-sm btn-primary" href="{{ route('register') }}">New</a>
+                        @endcan
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -18,6 +21,12 @@
                                         <th>Last Name</th>
                                         <th>Email Address</th>
                                         <th>User Role</th>
+                                        @can('update', Fieldtrip\User::class)
+                                            <th>Edit</th>
+                                        @endcan
+                                        @can('update', Fieldtrip\User::class)
+                                            <th>Remove</th>
+                                        @endcan
                                     </thead>
                                     <tbody>
                                     @foreach($users as $user)
@@ -26,7 +35,23 @@
                                             <td><strong> {!! $user->first_name !!}</strong></td>
                                             <td><strong> {!! $user->last_name !!}</strong></td>
                                             <td><strong> {!! $user->email !!}</strong></td>
-                                            <td>{!! $user->roles !!}</td>
+                                            <td>{!! $user->roles->first()->name !!}</td>
+                                            @can('update',$user)
+                                                <td class="hidden-xs" style="width:2%;">
+                                                    <a title="Edit"
+                                                       href="{!! URL::route('update_user', $user->id) !!}"
+                                                       class="pull-right"><i class="fa fa-pencil-square-o fa"></i>
+                                                        <a>
+                                                </td>
+                                            @endcan
+                                            @can('update',$user)
+                                                <td class="hidden-xs" style="width:2%;">
+                                                    <a title="Remove"
+                                                       href="{!! URL::route('remove_user', $user->id) !!}"
+                                                       class="pull-right"><i class="fa fa-times"></i>
+                                                        <a>
+                                                </td>
+                                            @endcan
                                         </tr>
                                     @endforeach
                                     </tbody>

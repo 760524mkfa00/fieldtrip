@@ -26,12 +26,20 @@ class UserPolicy
      * @param  \Fieldtrip\User  $user
      * @return mixed
      */
-    public function update(User $user, $id)
+    public function update(User $user, $id = null)
     {
-        if ($user->id === $id->id) {
-            return true;
+        if(! is_null($id)) {
+            if ($user->id === $id->id) {
+                return true;
+            }
         }
+
         return $user->hasAccess(['update-user']);
     }
 
+
+    public function crazy(User $user)
+    {
+        return $user->hasAccess(['create-user']);
+    }
 }
