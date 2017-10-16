@@ -20,8 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
-
-
 Route::group(['prefix' => 'zones'], function () {
 
     Route::get('/', 'ZoneController@index')->name('list_zones');

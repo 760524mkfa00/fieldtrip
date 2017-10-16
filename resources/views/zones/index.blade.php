@@ -11,7 +11,6 @@
                             <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_zone') }}">New</a>
                         @endcan
                     </div>
-
                     <div class="panel-body">
                         <div class="row">
                             @foreach($zones as $zone)

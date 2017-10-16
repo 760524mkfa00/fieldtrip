@@ -14,8 +14,9 @@ class ZoneController extends Controller
 
     public function index()
     {
-        $zones = Zone::all();
-        return view('zones.index', compact('zones'));
+
+        return view('zones.index')
+            ->withZones(Zone::all());
     }
 
     public function create()
@@ -28,7 +29,7 @@ class ZoneController extends Controller
         $data = $request->only('zone');
 
         $zone = Zone::create($data);
-        return redirect()->route('edit_zone', ['id' => $zone->id]);
+        return \Redirect::route('list_zones')->with('flash_message', 'Zone has been created.');
 
     }
 
@@ -42,7 +43,7 @@ class ZoneController extends Controller
     {
         $data = $request->only('zone');
         $zone->fill($data)->save();
-        return back();
+        return \Redirect::route('list_zones')->with('flash_message', 'Zone has been updated.');
     }
 
     public function destroy(Zone $zone)

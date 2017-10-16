@@ -42,7 +42,7 @@ class RouteController extends Controller
     {
         $data = $request->only('zone_id', 'route_number', 'end_time_am', 'end_point_am', 'start_time_pm', 'start_point_pm', 'end_time_pm');
         $route->fill($data)->save();
-        return back();
+        return \Redirect::route('list_routes')->with('flash_message', 'Route has been updated.');
     }
 
     public function destroy(Route $route)
