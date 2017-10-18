@@ -85,3 +85,15 @@ Route::group(['prefix' => 'users'], function () {
         ->name('remove_user')
         ->middleware('can:update,user');
 });
+
+Route::group(['prefix' => 'users/roles'], function () {
+
+    Route::get('/', 'RoleController@index')
+        ->name('list_role');
+
+    Route::get('/create/{role}', 'RoleController@create')
+        ->name('create_role');
+
+    Route::post('/store/{role}', 'RoleController@store')
+        ->name('store_role');
+});
