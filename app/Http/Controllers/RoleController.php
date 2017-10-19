@@ -5,12 +5,18 @@ namespace Fieldtrip\Http\Controllers;
 use Fieldtrip\Role;
 use Illuminate\Http\Request;
 
+
+/**
+ * Class RoleController
+ * @package Fieldtrip\Http\Controllers
+ */
 class RoleController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Show a list of roles.
      *
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
     public function index()
     {
@@ -18,71 +24,92 @@ class RoleController extends Controller
             ->withRoles(Role::all());
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Create a role.
      *
-     * @return \Illuminate\Http\Response
+     * @param Role $role
+     * @return mixed
      */
-    public function create(Role $role)
+    public function create()
     {
 
-        return view('roles.create')
+        return view('roles.create');
+    }
+
+    /**
+     * Save a role.
+     *
+     * @param Role $role
+     * @param Request $request
+     * @return mixed
+     */
+    public function store(Request $request)
+    {
+
+
+        Role::create([
+            'name' => $request->input('name'),
+            'slug' => strtolower($request->input('name')),
+            'permissions' => ['read-only' => true]
+        ]);
+
+        return \Redirect::route('list_role')->with('flash_message', 'Role has been created.');
+
+    }
+
+
+
+    /**
+     * Create a permission for a role.
+     *
+     * @param Role $role
+     * @return mixed
+     */
+    public function createPermission(Role $role)
+    {
+
+        return view('roles.permission')
             ->withRole($role);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Save a permission to selected role.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Role $role
+     * @param Request $request
+     * @return mixed
      */
-    public function store(Role $role, Request $request)
+    public function storePermission(Role $role, Request $request)
     {
-        dd($request->all());
+
+        $role->permissions = array_add($role->permissions, $request->permissions, true);
+
+        $role->save();
+
+        return \Redirect::route('list_role')->with('flash_message', 'Permission has been created.');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
-     * Show the form for editing the specified resource.
+     * Removed a permission from role.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Role $role
+     * @param $permission
+     * @return mixed
      */
-    public function edit($id)
+    public function destroyPermission(Role $role, $permission)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $array = $role->permissions;
+        unset($array[$permission]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $role->permissions = $array;
+
+        $role->save();
+
+        return \Redirect::route('list_role')->with('flash_message', 'Permission has been removed.');
+
     }
 }

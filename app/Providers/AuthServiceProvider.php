@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'Fieldtrip\Zone' => 'Fieldtrip\Policies\ZonePolicy',
         'Fieldtrip\Route' => 'Fieldtrip\Policies\RoutePolicy',
         'Fieldtrip\User' => 'Fieldtrip\Policies\UserPolicy',
+        'Fieldtrip\Role' => 'Fieldtrip\Policies\RolePolicy',
     ];
 
     /**

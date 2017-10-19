@@ -7,7 +7,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Roles
-
+{{--                        @can('create', Fieldtrip\Role::class)--}}
+                            <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_role') }}">New Role</a>
+                        {{--@endcan--}}
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -17,11 +19,8 @@
                                         <th>#</th>
                                         <th>Role Name</th>
                                         <th>Roles</th>
-                                        @can('update', Fieldtrip\User::class)
-                                            <th>Edit</th>
-                                        @endcan
-                                        @can('update', Fieldtrip\User::class)
-                                            <th>Remove</th>
+                                        @can('removePermission', Fieldtrip\Role::class)
+                                            <th class="pull-right">Remove</th>
                                         @endcan
                                     </thead>
                                     <tbody>
@@ -30,8 +29,8 @@
                                             <td><strong> {!! $role->id !!}</strong></td>
                                             <td><strong> {!! $role->name !!}</strong></td>
                                             <td>
-                                                @can('create', Fieldtrip\User::class)
-                                                <a class="pull-left btn btn-sm btn-primary" href="{{ route('create_role', $role->id) }}">Add Role</a>
+                                                @can('createPermission', Fieldtrip\Role::class)
+                                                <a class="pull-left btn btn-sm btn-primary" href="{{ route('create_permission', $role->id) }}">Add Permission</a>
                                                 @endcan
                                             </td>
                                             <td></td>
@@ -44,17 +43,9 @@
                                                     <td></td>
                                                     <td>{!! $id !!}</td>
                                                     <td>
-                                                        @can('update',$role)
-                                                            <a title="Edit"
-                                                               href="{!! URL::route('update_user', $id) !!}"
-                                                               class="pull-right"><i class="fa fa-pencil-square-o fa"></i>
-                                                            <a>
-                                                        @endcan
-                                                    </td>
-                                                    <td>
-                                                        @can('update',$role)
+                                                        @can('removePermission',$role)
                                                             <a title="Remove"
-                                                               href="{!! URL::route('remove_user', $id) !!}"
+                                                               href="{!! URL::route('remove_permission', [$role->id, $id]) !!}"
                                                                class="pull-right"><i class="fa fa-times"></i>
                                                             <a>
                                                         @endcan

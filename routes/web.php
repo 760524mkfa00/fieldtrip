@@ -91,9 +91,18 @@ Route::group(['prefix' => 'users/roles'], function () {
     Route::get('/', 'RoleController@index')
         ->name('list_role');
 
-    Route::get('/create/{role}', 'RoleController@create')
+    Route::get('/create', 'RoleController@create')
         ->name('create_role');
 
-    Route::post('/store/{role}', 'RoleController@store')
+    Route::post('/store', 'RoleController@store')
         ->name('store_role');
+
+    Route::get('/create/{role}', 'RoleController@createPermission')
+        ->name('create_permission');
+
+    Route::post('/store/{role}', 'RoleController@storePermission')
+        ->name('store_permission');
+
+    Route::get('/remove/{role}/{key}', 'RoleController@destroyPermission')
+        ->name('remove_permission');
 });
