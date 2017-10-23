@@ -106,3 +106,13 @@ Route::group(['prefix' => 'users/roles'], function () {
     Route::get('/remove/{role}/{key}', 'RoleController@destroyPermission')
         ->name('remove_permission');
 });
+
+
+Route::group(['prefix' => 'trips'], function () {
+
+    Route::get('/', 'TripController@index')
+        ->name('list_trips');
+
+
+});
+
