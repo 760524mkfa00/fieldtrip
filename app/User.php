@@ -53,4 +53,13 @@ class User extends Authenticatable
     {
         return $this->roles()->where('slug', $roleSlug)->count() == 1;
     }
+
+    public function trip()
+    {
+        return $this->belongsToMany('Fieldtrip\Trip')
+            ->withPivot('accepted_hours', 'declined_hours')->withTimestamps();
+    }
+
+
+
 }

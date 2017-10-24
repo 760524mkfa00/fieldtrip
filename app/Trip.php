@@ -18,11 +18,17 @@ class Trip extends Model
 
     public function trip()
     {
-        return $this
+        return $this->with('user')
             ->get()
             ->groupBy(function($val) {
                 return Carbon::parse($val->trip_date)->format('D M d, y');
             });
 
     }
+
+    public function user()
+    {
+        return $this->belongsToMany('Fieldtrip\User')->withPivot('id', 'accepted_hours', 'declined_hours', 'hours','bank', 'mileage')->withTimestamps();
+    }
+
 }
