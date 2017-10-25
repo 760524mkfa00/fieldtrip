@@ -11,7 +11,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('store_zone') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('zone') ? ' has-error' : '' }}">
                                 <label for="zone" class="col-md-4 control-label">Zone</label>
 
                                 <div class="col-md-6">

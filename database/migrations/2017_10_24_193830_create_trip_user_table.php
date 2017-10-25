@@ -18,6 +18,7 @@ class CreateTripUserTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('trip_id')->unsigned();
+            $table->string('unit')->nullable();
             $table->double('accepted_hours', 8.2)->default(0)->nullable();
             $table->double('declined_hours', 8.2)->default(0)->nullable();
             $table->double('hours', 8.2)->default(0)->nullable();

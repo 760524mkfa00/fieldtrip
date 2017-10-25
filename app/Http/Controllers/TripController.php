@@ -36,7 +36,7 @@ class TripController extends Controller
      */
     public function create()
     {
-        //
+        return view('trips.create');
     }
 
     /**
@@ -47,18 +47,14 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = $request->only('field_trip_number', 'trip_date', 'pickup_time', 'pickup_location', 'dropoff_time', 'dropoff_location', 'student_count', 'fieldtrip_notes');
+
+
+        $this->trip->create($data);
+
+        return redirect()->route('list_trips');
+
     }
 
     /**
@@ -67,9 +63,9 @@ class TripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trip $trip)
     {
-        //
+        return view('trips.edit', compact('trip'));
     }
 
     /**
@@ -79,9 +75,13 @@ class TripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trip $trip)
     {
-        //
+
+        $data = $request->only('field_trip_number', 'trip_date', 'pickup_time', 'pickup_location', 'dropoff_time', 'dropoff_location', 'student_count', 'fieldtrip_notes');
+        $trip->fill($data)->save();
+        return \Redirect::route('list_trips')->with('flash_message', 'Trip has been updated.');
+
     }
 
     /**
@@ -90,8 +90,17 @@ class TripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trip $trip)
     {
-        //
+        try {
+            $trip->delete();
+        }
+        catch(\Exception $e)
+        {
+            return \Redirect::back()->withErrors('You cannot delete this item, it may has information attached to it. Please remove that information first');
+        }
+
+        return \Redirect::route('list_trips')->with('flash_message', 'Trip has been removed.');
+
     }
 }

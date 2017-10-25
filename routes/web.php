@@ -113,6 +113,26 @@ Route::group(['prefix' => 'trips'], function () {
     Route::get('/', 'TripController@index')
         ->name('list_trips');
 
+    Route::get('/create', 'TripController@create')
+        ->name('create_trip');
 
+    Route::post('/store', 'TripController@store')
+        ->name('store_trip');
+
+    Route::get('/edit/{trip}', 'TripController@edit')
+        ->name('edit_trip');
+
+    Route::post('/update/{trip}', 'TripController@update')
+        ->name('update_trip');
+
+    Route::get('/remove/{trip}', 'TripController@destroy')
+        ->name('remove_trip');
 });
 
+Route::group(['prefix' => 'drivers'], function () {
+
+    Route::get('/{trip}', 'DriverController@assign')
+        ->name('assign_driver');
+
+
+});
