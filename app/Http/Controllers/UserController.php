@@ -2,6 +2,8 @@
 
 namespace Fieldtrip\Http\Controllers;
 
+use Fieldtrip\Role;
+use Fieldtrip\Route;
 use Fieldtrip\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -17,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::with('roles')->get();
+        $users = User::with(['roles', 'route'])->get();
 
         return view('users.index')
             ->withUsers($users);
@@ -56,10 +58,11 @@ class UserController extends Controller
     public function edit(user $user)
     {
 
-        $current = $user->roles()->first();
+        $current = $user->roles()->first() ?? new Role();
 
         return view('users.edit')
             ->withUser($user)
+            ->withRoutes(Route::all())
             ->withCurrent($current);
     }
 
@@ -72,7 +75,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, user $user)
     {
-        $data = $request->only('first_name', 'last_name', 'email');
+        $data = $request->only('first_name', 'last_name', 'email', 'route_id');
+
         $user->fill($data)->save();
 
         $user->roles()->sync($request->get('role'));

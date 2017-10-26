@@ -56,11 +56,29 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group{{ $errors->has('route_id') ? ' has-error' : '' }}">
+                                        <label for="route_id" class="col-md-4 control-label">Route</label>
+                                        <div class="col-md-6">
+                                            <select id="route_id" class="form-control" name="route_id">
+                                                <option value="" selected>Select Route</option>
+                                                @foreach($routes as $route)
+                                                    <option value="{{$route->id}}" {{ $user->route_id == $route->id ? 'selected' : '' }}>{{$route->route_number}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            @if ($errors->has('route_id'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('route_id') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                                         <label for="role" class="col-md-4 control-label">User role</label>
-
                                         <div class="col-md-6">
                                             <select id="role" class="form-control" name="role" required>
+                                                <option value="" selected disabled hidden>Select Role</option>
                                                 @foreach($roles as $id => $role)
                                                     <option value="{{$role->id}}" {{ $current->id == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
                                                 @endforeach

@@ -20,6 +20,7 @@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email Address</th>
+                                        <th>Route</th>
                                         <th>User Role</th>
                                         @can('update', Fieldtrip\User::class)
                                             <th>Edit</th>
@@ -35,7 +36,8 @@
                                             <td><strong> {!! $user->first_name !!}</strong></td>
                                             <td><strong> {!! $user->last_name !!}</strong></td>
                                             <td><strong> {!! $user->email !!}</strong></td>
-                                            <td>{!! $user->roles->first()->name !!}</td>
+                                            <td>{!! $user->route->route_number ?? '' !!}</td>
+                                            <td>{!! $user->roles->first()->name ?? NULL !!}</td>
                                             @can('update',$user)
                                                 <td class="hidden-xs" style="width:2%;">
                                                     <a title="Edit"

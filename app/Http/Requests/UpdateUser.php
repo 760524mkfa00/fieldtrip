@@ -29,6 +29,7 @@ class UpdateUser extends FormRequest
             'last_name' => 'required|max:255',
             'email' => ['required','email','max:255', Rule::unique('users')->ignore(request()->user->id)],
             'role' => 'required|exists:roles,id', // validating role
+            'route_number' => 'exists:routes,id',
         ];
     }
 }

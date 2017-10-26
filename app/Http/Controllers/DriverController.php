@@ -15,19 +15,18 @@ class DriverController extends Controller
 
         // TODO: Get a list of drivers by zone and hours
 
-        $totals = User::with('trip')->get();
+        $totals = User::with('trip', 'route', 'route.zone')->get();
 
-//        foreach($totals as $total) {
-//
-////            $total->accepted = $total->reduce($trip->pivot, function($items) {
-////                return $items->accepted_hours;
-////            });
-//
-//        }
+        foreach($totals as $total) {
+            $total->accepted = $total->trip->sum('pivot.accepted_hours');
+            $total->declined = $total->trip->sum('pivot.declined_hours');
+            $total->totalHours = $total->accepted + $total->declined;
+            $total->zone = $total->route->zone->zone;
+        }
 
-        dd($totals);
+        $totals->sortBy('zone')->sortBy( 'totalHours')->values()->all();
 
-        return view('drivers.assign', compact('trip'));
+        return view('drivers.assign', compact('totals'));
 
     }
 }
