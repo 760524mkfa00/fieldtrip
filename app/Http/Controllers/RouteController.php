@@ -12,7 +12,7 @@ class RouteController extends Controller
 
     public function index()
     {
-        $routes = Route::all();
+        $routes = Route::with('zone')->get();
         return view('routes.index', compact('routes'));
     }
 
