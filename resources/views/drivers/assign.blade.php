@@ -27,24 +27,38 @@
                                     <th>Declined</th>
                                     <th>Total</th>
                                     <th>///</th>
+                                    <th>///</th>
                                     </thead>
                                     <tbody>
 
                                     @foreach($drivers as $driver)
                                         <tr>
-                                            <td>{!! $driver->zone !!}</td>
-                                            <td>{!! $driver->route->route_number !!}</td>
-                                            <td>{!! $driver->route->end_time_am !!}</td>
-                                            <td>{!! $driver->route->end_point_am !!}</td>
-                                            <td>{!! $driver->route->start_time_pm !!}</td>
-                                            <td>{!! $driver->route->start_point_pm !!}</td>
-                                            <td>{!! $driver->route->end_time_pm !!}</td>
-                                            <td><strong>{!! $driver->first_name . ' ' . $driver->last_name !!}</strong></td>
-                                            <td>{!! $driver->other_job_posted !!}</td>
-                                            <td>{!! $driver->notes !!}</td>
-                                            <td>{!! $driver->accepted !!}</td>
-                                            <td>{!! $driver->declined !!}</td>
-                                            <td><strong>{!! $driver->totalHours !!}</strong></td>
+                                            <td>{!! $driver['zone'] !!}</td>
+                                            <td>{!! $driver['route']['route_number'] !!}</td>
+                                            <td>{!! $driver['route']['end_time_am'] !!}</td>
+                                            <td>{!! $driver['route']['end_point_am'] !!}</td>
+                                            <td>{!! $driver['route']['start_time_pm'] !!}</td>
+                                            <td>{!! $driver['route']['start_point_pm'] !!}</td>
+                                            <td>{!! $driver['route']['end_time_pm'] !!}</td>
+                                            <td><strong>{!! $driver['first_name'] . ' ' . $driver['last_name'] !!}</strong></td>
+                                            <td>{!! $driver['other_job_posted'] !!}</td>
+                                            <td>{!! $driver['driver_notes'] !!}</td>
+                                            <td>{!! $driver['accepted'] !!}</td>
+                                            <td>{!! $driver['declined'] !!}</td>
+                                            <td><strong>{!! $driver['totalHours'] !!}</strong></td>
+                                            <td>
+                                                <a title="assign"
+                                                   href="{!! URL::route('assign_trip', [$trip->id, $driver['id']]) !!}"
+                                                   class="pull-right">Assign
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if($trip->driver->contains($driver['id']))
+                                                    <div class= "button" data-id="{{ $user['id']}}">
+                                                        <button class="user-button btn btn-danger" data-choice="remove">Remove</button>
+                                                    </div>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

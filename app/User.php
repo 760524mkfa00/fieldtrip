@@ -2,6 +2,7 @@
 
 namespace Fieldtrip;
 
+use function Fieldtrip\Services\sortData;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -66,6 +67,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('Fieldtrip\Trip')
             ->withPivot('accepted_hours', 'declined_hours')->withTimestamps();
+    }
+
+
+    public static function sortedUser()
+    {
+        $totals = User::with('trip', 'route', 'route.zone')
+            ->get();
+
+        foreach($totals as $total) {
+            $total->accepted = $total->trip->sum('pivot.accepted_hours');
+            $total->declined = $total->trip->sum('pivot.declined_hours');
+            $total->totalHours = $total->accepted + $total->declined;
+            $total->zone = $total->route->zone->zone;
+        }
+
+        return $x = sortData($totals->toArray(), ['zone' => 'asc', 'totalHours' => 'asc', 'declined' => 'asc']);
     }
 
 
