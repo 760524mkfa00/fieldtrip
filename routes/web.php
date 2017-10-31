@@ -137,5 +137,8 @@ Route::group(['prefix' => 'drivers'], function () {
     Route::get('/{trip}/{user}', 'DriverController@assignToTrip')
         ->name('assign_trip');
 
+    Route::put('/{user}', 'DriverController@storeTripHours')
+        ->name('store_hours');
+
 
 });

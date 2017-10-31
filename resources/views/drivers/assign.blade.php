@@ -26,11 +26,10 @@
                                     <th>Accepted</th>
                                     <th>Declined</th>
                                     <th>Total</th>
-                                    <th>///</th>
-                                    <th>///</th>
+                                    <th></th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
-
                                     @foreach($drivers as $driver)
                                         <tr>
                                             <td>{!! $driver['zone'] !!}</td>
@@ -53,10 +52,8 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                @if($trip->driver->contains($driver['id']))
-                                                    <div class= "button" data-id="{{ $user['id']}}">
-                                                        <button class="user-button btn btn-danger" data-choice="remove">Remove</button>
-                                                    </div>
+                                                @if($trip->user->contains($driver['id']))
+                                                    <span class="" style="color: green;"><i class="fa fa-check"></i></span>
                                                 @endif
                                             </td>
                                         </tr>

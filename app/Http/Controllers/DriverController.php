@@ -14,18 +14,6 @@ class DriverController extends Controller
     public function assign(Trip $trip)
     {
 
-//        $totals = User::with('trip', 'route', 'route.zone')
-//            ->get();
-//
-//        foreach($totals as $total) {
-//            $total->accepted = $total->trip->sum('pivot.accepted_hours');
-//            $total->declined = $total->trip->sum('pivot.declined_hours');
-//            $total->totalHours = $total->accepted + $total->declined;
-//            $total->zone = $total->route->zone->zone;
-//        }
-//
-//        $drivers = sortData($totals->toArray(), ['zone' => 'asc', 'totalHours' => 'asc', 'declined' => 'asc']);
-
         $drivers = User::sortedUser();
 
         return view('drivers.assign')
@@ -41,6 +29,12 @@ class DriverController extends Controller
 
         return back();
 
+    }
+
+
+    public function storeTripHours($id)
+    {
+        return request();
     }
 
 
