@@ -9,6 +9,7 @@
                     <div class="panel-heading">
                         Trips
 {{--                        @can('create', Fieldtrip\Trip::class)--}}
+                            @include('trips\_partials\filter')
                             <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_trip') }}">New</a>
                         {{--@endcan--}}
                     </div>
@@ -53,6 +54,9 @@
 @endsection
 
 @section('footer')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+
     <script>
 
         jQuery(document).ready(function() {
@@ -67,8 +71,7 @@
                     'accepted_hours': $("input[name=accepted_hours" + myValue + "]").val(),
                     'declined_hours': $("input[name=declined_hours" + myValue + "]").val(),
                     'hours': $("input[name=hours" + myValue + "]").val(),
-                    'bank': $("input[name=bank" + myValue + "]").val(),
-                    // 'overtime': $("input[name=overtime" + myValue + "]").val(),
+                    'bank': $("input[name=bank" + myValue + "]").is(":checked") ? 1:0,
                     'mileage': $("input[name=mileage" + myValue + "]").val(),
                     'unit': $("input[name=unit" + myValue + "]").val(),
                     'button': myValue
@@ -98,6 +101,27 @@
                 // info.hide().find('ul').empty();
                 // flash.find('p').empty();
             });
+
+
+
+            $(function() {
+                $('#myselect').change(function() {
+                    var val = $(this).val();
+
+                    if(val === "Custom") {
+                        $('#start_range').removeAttr('hidden');
+                        $('#end_range').removeAttr('hidden');
+                    }
+
+                    if(val === "This Week") {
+                        $('#start_range').val(moment().startOf('isoWeek').format('YYYY-MM-DD'));
+                        $('#end_range').val(moment().endOf('isoWeek').format('YYYY-MM-DD'));
+                    }
+
+                });
+            });
+
+
         });
 
     </script>

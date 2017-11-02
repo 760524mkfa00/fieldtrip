@@ -19,7 +19,8 @@
                                     <thead>
                                     <th>#</th>
                                     <th>Zone</th>
-                                    <th>Route Number</th>
+                                    <th>Route</th>
+                                    <th>Unit</th>
                                     <th>End Time AM</th>
                                     <th>End Point AM</th>
                                     <th>Start Time PM</th>

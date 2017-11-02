@@ -38,7 +38,7 @@ class User extends Authenticatable
      */
     public function route()
     {
-        return $this->belongsTo('Fieldtrip\Route');
+        return $this->belongsTo('Fieldtrip\Route', 'route_id');
     }
 
     /**

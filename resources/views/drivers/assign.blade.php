@@ -62,6 +62,7 @@
                                 </table>
                             </div>
                         </div>
+                        <a title="assign" href="{!! URL::route('list_trips') !!}" class="btn btn-primary">Back to Trips </a>
                     </div>
                 </div>
             </div>

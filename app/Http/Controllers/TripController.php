@@ -23,7 +23,13 @@ class TripController extends Controller
     public function index()
     {
 
-        $tripDate = $this->trip->trip();
+        if(!$filter = \Request::all())
+        {
+            $filter['start_range'] = date("Y-m-d");
+            $filter['end_range'] = date("Y-m-d");
+        }
+
+        $tripDate = $this->trip->trip($filter);
 
         return view('trips.index')
             ->withTrips($tripDate);

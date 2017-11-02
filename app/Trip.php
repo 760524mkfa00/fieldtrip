@@ -16,9 +16,11 @@ class Trip extends Model
     }
 
 
-    public function trip()
+    public function trip(array $filter)
     {
-        return $this->with('user')
+
+        return $this->with('user', 'user.route')
+            ->DateFilter($filter["start_range"], $filter["end_range"])
             ->get()
             ->groupBy(function($val) {
                 return Carbon::parse($val->trip_date)->format('D M d, y');
@@ -29,6 +31,11 @@ class Trip extends Model
     public function user()
     {
         return $this->belongsToMany('Fieldtrip\User')->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'hours','bank', 'mileage')->withTimestamps();
+    }
+
+    public function scopeDateFilter($query, $startDate, $endDate)
+    {
+        $query->where('trip_date', '>=', $startDate)->where('trip_date', '<=', $endDate);
     }
 
 }

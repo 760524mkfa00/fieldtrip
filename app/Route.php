@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
 
-    protected $fillable = ['zone_id', 'route_number', 'end_time_am', 'end_point_am', 'start_time_pm', 'start_point_pm', 'end_time_pm'];
+    protected $fillable = ['zone_id', 'route_number', 'end_time_am', 'end_point_am', 'start_time_pm', 'start_point_pm', 'end_time_pm', 'unit'];
 
     public function zone()
     {

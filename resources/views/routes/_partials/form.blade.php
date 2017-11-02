@@ -13,12 +13,28 @@
     </div>
 </div>
 
+<div class="form-group{{ $errors->has('unit') ? ' has-error' : '' }}">
+    <label for="unit" class="col-md-4 control-label">Unit</label>
+
+    <div class="col-md-6">
+        <input id="unit" type="text" class="form-control" name="unit"
+               value="{{ old('unit', $route->unit ?? null) }}" autofocus>
+
+        @if ($errors->has('unit'))
+            <span class="help-block">
+                                        <strong>{{ $errors->first('unit') }}</strong>
+                                    </span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group{{ $errors->has('zone_id') ? ' has-error' : '' }}">
     <label for="zone_id" class="col-md-4 control-label">Zone</label>
 
     <div class="col-md-6">
         <select name="zone_id" id="zone_id" class="form-control">
             <option value="">Select Zone...</option>
+            {!! $zones !!}
             @foreach($zones as $zone)
                 <option value="{{ $zone->id }}" {{ $route->zone_id == $zone->id ? 'selected' : '' }}>
                     {{ $zone->zone }}

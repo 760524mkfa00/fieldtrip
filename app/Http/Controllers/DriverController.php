@@ -2,7 +2,7 @@
 
 namespace Fieldtrip\Http\Controllers;
 
-use function Fieldtrip\Services\sortData;
+use Fieldtrip\Http\Requests\UpdateDriverHours;
 use Fieldtrip\Trip;
 use Fieldtrip\User;
 use Illuminate\Http\Request;
@@ -32,9 +32,13 @@ class DriverController extends Controller
     }
 
 
-    public function storeTripHours($id)
+    public function storeTripHours($id, UpdateDriverHours $request)
     {
-        return request();
+        \DB::table('trip_user')
+            ->where('id', $id)
+            ->update($request->except('_token', 'button'));
+
+        return \Response::json(['success' => true, 'message' => 'Information Updated!']);
     }
 
 
