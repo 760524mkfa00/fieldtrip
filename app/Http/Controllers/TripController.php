@@ -25,9 +25,19 @@ class TripController extends Controller
 
         if(!$filter = \Request::all())
         {
-            $filter['start_range'] = date("Y-m-d");
-            $filter['end_range'] = date("Y-m-d");
+            if (\Session::exists('dateRange')) {
+                $dateRange = \Session::get('dateRange');
+                $filter['start_range'] = $dateRange['start_range'];
+                $filter['end_range'] = $dateRange['end_range'];
+                $filter['selectedOption'] = $dateRange['selectedOption'];
+            } else {
+                $filter['start_range'] = date("Y-m-d");
+                $filter['end_range'] = date("Y-m-d");
+                $filter['selectedOption'] = 'Today';
+            }
+
         }
+        \Session::put('dateRange', $filter);
 
         $tripDate = $this->trip->trip($filter);
 

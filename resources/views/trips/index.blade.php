@@ -4,14 +4,21 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <-left right->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Trips
-{{--                        @can('create', Fieldtrip\Trip::class)--}}
-                            @include('trips\_partials\filter')
-                            <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_trip') }}">New</a>
-                        {{--@endcan--}}
+                        <div class="row">
+                            {{--<div class="col-md-1">--}}
+                                {{--Trips--}}
+                            {{--</div>--}}
+                            <div class="col-md-11">
+                                @include('trips\_partials\filter')
+                            </div>
+                            <div class="col-md-1">
+                                {{--@can('create', Fieldtrip\Trip::class)--}}
+                                <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_trip') }}">New</a>
+                                {{--@endcan--}}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="panel-body">
@@ -116,6 +123,32 @@
                     if(val === "This Week") {
                         $('#start_range').val(moment().startOf('isoWeek').format('YYYY-MM-DD'));
                         $('#end_range').val(moment().endOf('isoWeek').format('YYYY-MM-DD'));
+                        $( "#submit" ).submit();
+                    }
+
+                    if(val === "This month") {
+                        $('#start_range').val(moment().startOf('month').format('YYYY-MM-DD'));
+                        $('#end_range').val(moment().endOf('month').format('YYYY-MM-DD'));
+                    }
+
+                    if(val === "Last Week") {
+                        $('#start_range').val(moment().subtract(1, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'));
+                        $('#end_range').val(moment().subtract(1, 'weeks').endOf('isoWeek').format('YYYY-MM-DD'));
+                    }
+
+                    if(val === "Last month") {
+                        $('#start_range').val(moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD'));
+                        $('#end_range').val(moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD'));
+                    }
+
+                    if(val === "Next Week") {
+                        $('#start_range').val(moment().add(1, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'));
+                        $('#end_range').val(moment().add(1, 'weeks').endOf('isoWeek').format('YYYY-MM-DD'));
+                    }
+
+                    if(val === "Today") {
+                        $('#start_range').val(moment().format('YYYY-MM-DD'));
+                        $('#end_range').val(moment().format('YYYY-MM-DD'));
                     }
 
                 });
