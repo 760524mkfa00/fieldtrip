@@ -75,7 +75,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, user $user)
     {
-        $data = $request->only('first_name', 'last_name', 'email', 'route_id');
+        $data = $request->only('first_name', 'last_name', 'email', 'route_id', 'other_job_posted', 'driver_notes', 'job');
 
         $user->fill($data)->save();
 

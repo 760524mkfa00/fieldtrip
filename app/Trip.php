@@ -19,7 +19,7 @@ class Trip extends Model
     public function trip(array $filter)
     {
 
-        return $this->with('user', 'user.route')
+        return $this->with('user.route', 'user')
             ->DateFilter($filter["start_range"], $filter["end_range"])
             ->get()
             ->groupBy(function($val) {

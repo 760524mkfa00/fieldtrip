@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'route_id'
+        'first_name', 'last_name', 'email', 'password', 'route_id', 'other_job_posted', 'driver_notes', 'job'
     ];
 
     /**
@@ -73,6 +73,7 @@ class User extends Authenticatable
     public static function sortedUser()
     {
         $totals = User::with('trip', 'route', 'route.zone')
+            ->where('job', '=', 'driver')
             ->get();
 
         foreach($totals as $total) {

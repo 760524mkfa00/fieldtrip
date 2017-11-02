@@ -74,6 +74,51 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group{{ $errors->has('other_job_posted') ? ' has-error' : '' }}">
+                                        <label for="other_job_posted" class="col-md-4 control-label">Other Job Posted</label>
+
+                                        <div class="col-md-6">
+                                            <input id="other_job_posted" type="text" class="form-control" name="other_job_posted" value="{{ $user->other_job_posted }}">
+
+                                            @if ($errors->has('other_job_posted'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('other_job_posted') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('driver_notes') ? ' has-error' : '' }}">
+                                        <label for="driver_notes" class="col-md-4 control-label">Driver Notes</label>
+
+                                        <div class="col-md-6">
+                                            <input id="driver_notes" type="text" class="form-control" name="driver_notes" value="{{ $user->driver_notes }}">
+
+                                            @if ($errors->has('driver_notes'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('driver_notes') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
+                                        <label for="job" class="col-md-4 control-label">Job</label>
+                                        <div class="col-md-6">
+                                            <select id="job" class="form-control" name="job">
+                                                <option value="" selected disabled hidden>Select Job</option>
+                                                <option value="driver" {!! $user->job == 'driver' ? 'selected="selected"' : ''  !!}>Driver</option>
+                                                <option value="office" {!! $user->job == 'office' ? 'selected="selected"' : ''  !!}>Office</option>
+                                            </select>
+
+                                            @if ($errors->has('job'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('job') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                                         <label for="role" class="col-md-4 control-label">User role</label>
                                         <div class="col-md-6">
