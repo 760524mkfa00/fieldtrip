@@ -80,7 +80,7 @@ class User extends Authenticatable
             $total->accepted = $total->trip->sum('pivot.accepted_hours');
             $total->declined = $total->trip->sum('pivot.declined_hours');
             $total->totalHours = $total->accepted + $total->declined;
-            $total->zone = $total->route->zone->zone;
+            $total->zone = $total->route->zone->zone ?? 'ZZZ';
         }
 
         return $x = sortData($totals->toArray(), ['zone' => 'asc', 'totalHours' => 'asc', 'declined' => 'asc']);

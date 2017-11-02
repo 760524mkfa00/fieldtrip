@@ -66,3 +66,43 @@
         </div>
     </div>
 @endsection
+@section('footer')
+
+    <script>
+        $(document).ready(function () {
+
+            $(function () {
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'pageLength',
+                        'excel',
+                        {
+                            extend: 'pdf',
+                            exportOptions: {
+                                modifier: {
+                                    page: 'current'
+                                }
+                            },
+                            pageSize: 'LETTER'
+                        },
+                        'print',
+                        {{--{--}}
+                        {{--text: 'New Route',--}}
+                        {{--action: function (e, dt, node, config) {--}}
+                        {{--window.location = "{!! route('create_route') !!}"--}}
+                        {{--}--}}
+                        {{--}--}}
+                    ],
+                    paging: true,
+                    pageLength: 15,
+                    lengthMenu: [
+                        [15, 30, 60, 120, -1],
+                        ['15 Rows', '30 Rows', '60 Rows', '120 Rows', 'Show All']
+                    ]
+                });
+            });
+        });
+    </script>
+
+@endsection
