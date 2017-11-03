@@ -7,10 +7,18 @@ use Fieldtrip\Trip;
 use Fieldtrip\User;
 use Illuminate\Http\Request;
 
+/**
+ * Class DriverController
+ * @package Fieldtrip\Http\Controllers
+ */
 class DriverController extends Controller
 {
 
 
+    /**
+     * @param Trip $trip
+     * @return mixed
+     */
     public function assign(Trip $trip)
     {
 
@@ -22,6 +30,11 @@ class DriverController extends Controller
 
     }
 
+    /**
+     * @param Trip $trip
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function assignToTrip(Trip $trip, User $user)
     {
 
@@ -32,6 +45,11 @@ class DriverController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @param UpdateDriverHours $request
+     * @return mixed
+     */
     public function storeTripHours($id, UpdateDriverHours $request)
     {
         \DB::table('trip_user')

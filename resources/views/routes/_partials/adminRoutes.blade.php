@@ -1,6 +1,6 @@
 @foreach($routes as $route)
     <tr>
-        <td><strong> {!! $route->id !!}</strong></td>
+{{--        <td><strong> {!! $route->id !!}</strong></td>--}}
         <td><strong> {!! $route->zone->zone !!}</strong></td>
         <td><strong> {!! $route->route_number !!}</strong></td>
         <td><strong> {!! $route->unit !!}</strong></td>

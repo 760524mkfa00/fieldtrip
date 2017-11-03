@@ -32,6 +32,9 @@
                                             <button type="submit" class="btn btn-primary">
                                                 Add
                                             </button>
+                                            <a href="{{ route('list_role') }}" class="btn btn-primary">
+                                                Cancel
+                                            </a>
                                         </div>
                                     </div>
                                 </form>

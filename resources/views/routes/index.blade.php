@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <table class="table" id="table">
                                     <thead>
-                                    <th>#</th>
+                                    {{--<th>#</th>--}}
                                     <th>Zone</th>
                                     <th>Route</th>
                                     <th>Unit</th>
@@ -27,8 +27,8 @@
                                     <th>Start Point PM</th>
                                     <th>End Time PM</th>
                                     @can('update', Fieldtrip\Route::class)
-                                        <th></th>
-                                        <th></th>
+                                        <th class="nosort"></th>
+                                        <th class="nosort"></th>
                                     @endcan
                                     {{--<th></th>--}}
                                     </thead>
@@ -57,6 +57,10 @@
             $(function () {
                 $('#table').DataTable({
                     dom: 'Bfrtip',
+                    aoColumnDefs: [{
+                        'bSortable': false,
+                        'aTargets': ['nosort']
+                    }],
                     buttons: [
                         'pageLength',
                         'excel',
@@ -71,10 +75,10 @@
                         },
                         'print',
                         {{--{--}}
-                        {{--text: 'New Route',--}}
-                        {{--action: function (e, dt, node, config) {--}}
-                        {{--window.location = "{!! route('create_route') !!}"--}}
-                        {{--}--}}
+                            {{--text: 'New Route',--}}
+                            {{--action: function (e, dt, node, config) {--}}
+                                {{--window.location = "{!! route('create_route') !!}"--}}
+                            {{--}--}}
                         {{--}--}}
                     ],
                     paging: true,

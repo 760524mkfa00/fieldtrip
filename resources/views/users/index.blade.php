@@ -23,10 +23,10 @@
                                         <th>Route</th>
                                         <th>User Role</th>
                                         @can('update', Fieldtrip\User::class)
-                                            <th>Edit</th>
+                                            <th class="nosort">Edit</th>
                                         @endcan
                                         @can('update', Fieldtrip\User::class)
-                                            <th>Remove</th>
+                                            <th class="nosort">Remove</th>
                                         @endcan
                                     </thead>
                                     <tbody>
@@ -74,6 +74,10 @@
             $(function () {
                 $('#table').DataTable({
                     dom: 'Bfrtip',
+                    aoColumnDefs: [{
+                        'bSortable': false,
+                        'aTargets': ['nosort']
+                    }],
                     buttons: [
                         'pageLength',
                         'excel',

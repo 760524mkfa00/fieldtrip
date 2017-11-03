@@ -33,7 +33,6 @@ class RoleController extends Controller
      */
     public function create()
     {
-
         return view('roles.create');
     }
 
@@ -47,6 +46,9 @@ class RoleController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'role' => 'required|unique:roles|max:255'
+        ]);
 
         Role::create([
             'name' => $request->input('name'),
@@ -82,6 +84,10 @@ class RoleController extends Controller
      */
     public function storePermission(Role $role, Request $request)
     {
+
+//        $request->validate([
+//            'role' => 'required|unique:roles|max:255'
+//        ]);
 
         $role->permissions = array_add($role->permissions, $request->permissions, true);
 
