@@ -12,7 +12,11 @@ class TripController extends Controller
 
     public function __construct(Trip $trip)
     {
+
+        $this->middleware('auth');
+
         $this->trip = $trip;
+
     }
 
     /**

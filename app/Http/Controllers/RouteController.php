@@ -10,6 +10,17 @@ use Fieldtrip\Http\Requests\UpdateRoute as UpdateRouteRequest;
 class RouteController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $routes = Route::with('zone')->get();

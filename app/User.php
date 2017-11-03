@@ -33,6 +33,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_users');
     }
 
+    public function adjustments()
+    {
+        return $this->belongsToMany(Adjustment::class, 'adjustment_users')
+            ->withPivot('hours')
+            ->withTimestamps();
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

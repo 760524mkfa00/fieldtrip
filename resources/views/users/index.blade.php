@@ -43,7 +43,7 @@
                                                     <a title="Edit"
                                                        href="{!! URL::route('update_user', $user->id) !!}"
                                                        class="pull-right"><i class="fa fa-pencil-square-o fa"></i>
-                                                        <a>
+                                                        </a>
                                                 </td>
                                             @endcan
                                             @can('update',$user)

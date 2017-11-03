@@ -142,3 +142,26 @@ Route::group(['prefix' => 'drivers'], function () {
 
 
 });
+
+
+Route::group(['prefix' => 'adjustments'], function () {
+
+    Route::get('/', 'AdjustmentController@index')
+        ->name('list_adjustments');
+
+    Route::get('/create', 'AdjustmentController@create')
+        ->name('create_adjustment');
+
+    Route::post('/store', 'AdjustmentController@store')
+        ->name('store_adjustment');
+
+    Route::get('/{adjustment}', 'AdjustmentController@show')
+        ->name('show_adjustment');
+
+    Route::get('/hours/{adjustment}', 'AdjustmentController@hours')
+        ->name('edit_adjustment');
+
+    Route::post('/store/hours/{adjustment}', 'AdjustmentController@storeHours')
+        ->name('store_hours');
+
+});
