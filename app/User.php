@@ -77,20 +77,31 @@ class User extends Authenticatable
     }
 
 
-    public static function sortedUser()
+    public function sortedUser()
     {
-        $totals = User::with('trip', 'route', 'route.zone')
+        $totals = User::with('trip', 'route', 'route.zone', 'adjustments')
             ->where('job', '=', 'driver')
             ->get();
 
+        $adjustmentDate = Adjustment::LastAdjustmentDate();
+
         foreach($totals as $total) {
-            $total->accepted = $total->trip->sum('pivot.accepted_hours');
+            $total->accepted = $this->acceptedTotal($total, $adjustmentDate);
             $total->declined = $total->trip->sum('pivot.declined_hours');
             $total->totalHours = $total->accepted + $total->declined;
             $total->zone = $total->route->zone->zone ?? 'ZZZ';
         }
 
         return $x = sortData($totals->toArray(), ['zone' => 'asc', 'totalHours' => 'asc', 'declined' => 'asc']);
+    }
+
+
+    public function acceptedTotal($total, $adjustmentDate)
+    {
+        $adjustmentHours = $total->adjustments->where('adjDate', '=', $adjustmentDate)->first()->pivot->hours;
+        $acceptedHours = $total->trip->where('trip_date', '>', $adjustmentDate)->sum('pivot.accepted_hours');
+
+        return $adjustmentHours + $acceptedHours;
     }
 
 

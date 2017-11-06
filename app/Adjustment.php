@@ -18,4 +18,12 @@ class Adjustment extends Model
             ->withTimestamps();
     }
 
+    public static function LastAdjustmentDate()
+    {
+        $data = Adjustment::max('adjDate');
+        return (is_null($data)) ? $data = '2000-01-01' :  $data;
+
+    }
+
+
 }

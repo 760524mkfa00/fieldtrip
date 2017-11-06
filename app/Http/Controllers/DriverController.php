@@ -14,15 +14,18 @@ use Illuminate\Http\Request;
 class DriverController extends Controller
 {
 
+    protected $user;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->middleware('auth');
+
+        $this->user = $user;
     }
 
     /**
@@ -32,7 +35,7 @@ class DriverController extends Controller
     public function assign(Trip $trip)
     {
 
-        $drivers = User::sortedUser();
+        $drivers = $this->user->sortedUser();
 
         return view('drivers.assign')
             ->withDrivers($drivers)
