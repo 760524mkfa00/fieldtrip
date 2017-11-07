@@ -2,6 +2,7 @@
 
 namespace Fieldtrip\Http\Controllers;
 
+use Fieldtrip\Adjustment;
 use Fieldtrip\Http\Requests\UpdateDriverHours;
 use Fieldtrip\Trip;
 use Fieldtrip\User;
@@ -34,13 +35,10 @@ class DriverController extends Controller
      */
     public function assign(Trip $trip)
     {
-
-        $drivers = $this->user->sortedUser();
-
         return view('drivers.assign')
-            ->withDrivers($drivers)
-            ->withTrip($trip);
-
+            ->withDrivers($this->user->sortedUser())
+            ->withTrip($trip)
+            ->withLastAdjustment(Adjustment::LastAdjustmentDate());
     }
 
     /**

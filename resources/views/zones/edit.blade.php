@@ -25,6 +25,20 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
+                                <label for="color" class="col-md-4 control-label">Colour (Use HEX)</label>
+
+                                <div class="col-md-6">
+                                    <input id="color" type="text" class="form-control" name="color" value="{{ old('color', $zone->color) }}" autofocus>
+
+                                    @if ($errors->has('color'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('color') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

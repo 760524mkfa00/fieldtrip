@@ -83,13 +83,14 @@ class User extends Authenticatable
             ->where('job', '=', 'driver')
             ->get();
 
-        $adjustmentDate = Adjustment::LastAdjustmentDate();
+        $totals->lastAdjustment = Adjustment::LastAdjustmentDate();
 
         foreach($totals as $total) {
-            $total->accepted = $this->acceptedTotal($total, $adjustmentDate);
+            $total->accepted = $this->acceptedTotal($total, $totals->lastAdjustment);
             $total->declined = $total->trip->sum('pivot.declined_hours');
             $total->totalHours = $total->accepted + $total->declined;
             $total->zone = $total->route->zone->zone ?? 'ZZZ';
+            $total->color = $total->route->zone->color ?? '#ffffff';
         }
 
         return $x = sortData($totals->toArray(), ['zone' => 'asc', 'totalHours' => 'asc', 'declined' => 'asc']);
@@ -98,7 +99,7 @@ class User extends Authenticatable
 
     public function acceptedTotal($total, $adjustmentDate)
     {
-        $adjustmentHours = $total->adjustments->where('adjDate', '=', $adjustmentDate)->first()->pivot->hours;
+        $adjustmentHours = $total->adjustments->where('adjDate', '=', $adjustmentDate)->first()->pivot->hours ?? 0.0;
         $acceptedHours = $total->trip->where('trip_date', '>', $adjustmentDate)->sum('pivot.accepted_hours');
 
         return $adjustmentHours + $acceptedHours;

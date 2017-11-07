@@ -12,7 +12,7 @@ class Zone extends Model
      *
      * @var array
      */
-    protected $fillable = ['zone'];
+    protected $fillable = ['zone', 'color'];
 
 
 //    public function userTotals()

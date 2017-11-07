@@ -37,7 +37,7 @@ class ZoneController extends Controller
 
     public function store(StoreZoneRequest $request)
     {
-        $data = $request->only('zone');
+        $data = $request->only('zone', 'color');
 
         $zone = Zone::create($data);
         return \Redirect::route('list_zones')->with('flash_message', 'Zone has been created.');
@@ -46,13 +46,13 @@ class ZoneController extends Controller
 
     public function edit(Zone $zone)
     {
-        return view('zones.edit', compact('zone'));
+        return view('zones.edit', compact('zone', 'color'));
     }
 
 
     public function update(Zone $zone, UpdateZoneRequest $request)
     {
-        $data = $request->only('zone');
+        $data = $request->only('zone', 'color');
         $zone->fill($data)->save();
         return \Redirect::route('list_zones')->with('flash_message', 'Zone has been updated.');
     }

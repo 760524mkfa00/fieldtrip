@@ -82,7 +82,7 @@
                         {{--}--}}
                     ],
                     paging: true,
-                    pageLength: 15,
+                    pageLength: 120,
                     lengthMenu: [
                         [15, 30, 60, 120, -1],
                         ['15 Rows', '30 Rows', '60 Rows', '120 Rows', 'Show All']

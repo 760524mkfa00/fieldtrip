@@ -6,11 +6,20 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Drivers
+                        Drivers (Last payroll adjustment date: {!! $lastAdjustment !!})
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
+                                {{--can see this info--}}
+                                <table class="table" id="table">
+                                    <tr>
+                                        <td><strong>Trip #</strong>{!! $trip->field_trip_number !!}</td>
+                                        <td><strong>Pick up:</strong> {!! $trip->pickup_location . ' - ' . $trip->pickup_time !!}</td>
+                                        <td><strong>Drop off:</strong> {!! $trip->dropoff_location . ' - ' . $trip->dropoff_time !!}</td>
+                                        <td><strong>Notes:</strong> {!! $trip->notes !!}</td>
+                                    </tr>
+                                </table>
                                 <table class="table" id="table">
                                     <thead>
                                     <th>Zone</th>
@@ -31,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($drivers as $driver)
-                                        <tr>
+                                        <tr style="background-color: {!! $driver['color'] !!};">
                                             <td>{!! $driver['zone'] !!}</td>
                                             <td>{!! $driver['route']['route_number'] !!}</td>
                                             <td>{!! $driver['route']['end_time_am'] !!}</td>

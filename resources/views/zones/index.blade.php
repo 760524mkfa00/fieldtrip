@@ -19,6 +19,7 @@
                                         <div class="caption">
                                             <h3><a href="{{ route('edit_zone', ['id' => $zone->id]) }}">{{ $zone->zone }}</a></h3>
                                             <p>{{ str_limit($zone->name, 50) }}</p>
+                                            <p>{{ str_limit($zone->color, 10) }}</p>
                                             @can('update', $zone)
                                                 <p>
                                                     <a href="{{ route('edit_zone', ['id' => $zone->id]) }}" class="btn btn-sm btn-default" role="button">Edit</a>
