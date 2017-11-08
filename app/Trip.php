@@ -30,7 +30,9 @@ class Trip extends Model
 
     public function user()
     {
-        return $this->belongsToMany('Fieldtrip\User')->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'hours','bank', 'mileage')->withTimestamps();
+        return $this->belongsToMany('Fieldtrip\User')
+            ->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'bank', 'mileage','note', 'one', 'oneHalf', 'two')
+            ->withTimestamps();
     }
 
     public function scopeDateFilter($query, $startDate, $endDate)

@@ -1,9 +1,9 @@
 @foreach($trips as $key => $tripDate)
     <tr>
-        <td colspan="10" style="background-color: azure; font-size: 1.5em; font-weight: bolder;">{!! $key !!}</td>
+        <td colspan="12" style="background-color: azure; font-size: 1.5em; font-weight: bolder;">{!! $key !!}</td>
     </tr>
     @foreach($tripDate as $trip)
-        <tr>
+        <tr style="{!! ($trip->user->count() ? '' : 'background-color: #ffe6e6') !!}">
             <td><strong>
                     <a href="{{ route('edit_trip', $trip->id) }}" class="" style="color: red;">
                         {!! $trip->field_trip_number !!}
@@ -18,11 +18,12 @@
             <td><strong>{!! $trip->dropoff_time !!}</strong></td>
             <td><strong>{!! $trip->dropoff_location !!}</strong></td>
             <td><strong>{!! $trip->student_count !!}</strong></td>
+            <td colspan="4" style="color: red;"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>
             {{--TODO: Check user can remove trip--}}
             <td>
                 <a title="Remove"
                    href="{!! URL::route('remove_trip', $trip->id) !!}"
-                   class="pull-right" style="color:red;"><i class="fa fa-times"></i>
+                   class="" style="color:red;"><i class="fa fa-times"></i>
                 </a>
             </td>
         </tr>

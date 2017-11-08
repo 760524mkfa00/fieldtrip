@@ -24,15 +24,16 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table" id="table">
+                                <table class="table table-condensed" id="table">
                                     <thead>
                                         <th>#</th>
                                         <th></th>
-                                        <th>Pick Up Time</th>
+                                        <th width="7%">Pick Up Time</th>
                                         <th>Pick Up Location</th>
-                                        <th>Drop Off Time</th>
+                                        <th width="7%">Drop Off Time</th>
                                         <th>Drop Off Location</th>
                                         <th>Students</th>
+                                        <th colspan="3">Note</th>
                                         <th></th>
                                         <th></th>
                                         <tr>
@@ -41,10 +42,15 @@
                                             <td class="small"><strong>Unit</strong></td>
                                             <td class="small"><strong>Accepted</strong></td>
                                             <td class="small"><strong>Decline</strong></td>
-                                            <td class="small"><strong>Hours</strong></td>
-                                            <td class="small"><strong>Miles</strong></td>
-                                            <td class="small"><strong>Bank</strong></td>
+                                            <td class="small"><strong>Note</strong></td>
 
+                                            <td class="small" width="8%"><strong></strong></td>
+                                            <td class="small" width="8%"><strong></strong></td>
+                                            <td class="small" width="8%"><strong></strong></td>
+
+                                            <td class="small" width="8%"><strong></strong></td>
+                                            <td class="small" ><strong>Bank</strong></td>
+                                            <td class="small"><strong></strong></td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,10 +83,13 @@
                     '_token': '<?php echo csrf_token(); ?>',
                     'accepted_hours': $("input[name=accepted_hours" + myValue + "]").val(),
                     'declined_hours': $("input[name=declined_hours" + myValue + "]").val(),
-                    'hours': $("input[name=hours" + myValue + "]").val(),
+                    'one': $("input[name=one" + myValue + "]").val(),
+                    'oneHalf': $("input[name=oneHalf" + myValue + "]").val(),
+                    'two': $("input[name=two" + myValue + "]").val(),
                     'bank': $("input[name=bank" + myValue + "]").is(":checked") ? 1:0,
                     'mileage': $("input[name=mileage" + myValue + "]").val(),
                     'unit': $("input[name=unit" + myValue + "]").val(),
+                    'note': $("input[name=note" + myValue + "]").val(),
                     'button': myValue
                 };
                 $.ajax({

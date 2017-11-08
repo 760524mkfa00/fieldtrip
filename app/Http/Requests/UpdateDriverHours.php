@@ -26,7 +26,7 @@ class UpdateDriverHours extends FormRequest
         return [
             "accepted_hours" => 'required|numeric|between:0,100',
             "declined_hours" => 'required|numeric|between:0,100',
-            "hours" => 'required|numeric|between:0,100',
+//            "hours" => 'required|numeric|between:0,100',
             "bank" => 'required|numeric|between:0,100',
             "mileage" => 'required|numeric|between:0,1000',
             "unit" => 'required'

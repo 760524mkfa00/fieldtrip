@@ -7,19 +7,21 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Drivers (Last payroll adjustment date: {!! $lastAdjustment !!})
+                        <div class="pull-right small"><a title="assign" href="{!! URL::route('list_trips') !!}" class="btn btn-primary btn-sm">Back to Trips </a></div>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
                                 {{--can see this info--}}
-                                <table class="table" id="table">
-                                    <tr>
-                                        <td><strong>Trip #</strong>{!! $trip->field_trip_number !!}</td>
-                                        <td><strong>Pick up:</strong> {!! $trip->pickup_location . ' - ' . $trip->pickup_time !!}</td>
-                                        <td><strong>Drop off:</strong> {!! $trip->dropoff_location . ' - ' . $trip->dropoff_time !!}</td>
-                                        <td><strong>Notes:</strong> {!! $trip->notes !!}</td>
-                                    </tr>
-                                </table>
+                                <div class="row">
+                                    {{--<div class="col-md-12">--}}
+                                        <div class="col-md-1"><strong>Trip #</strong>{!! $trip->field_trip_number !!}</div>
+                                        <div class="col-md-3"><strong>Pick up:</strong> {!! $trip->pickup_location . ' - ' . $trip->pickup_time !!}</div>
+                                        <div class="col-md-3"><strong>Drop off:</strong> {!! $trip->dropoff_location . ' - ' . $trip->dropoff_time !!}</div>
+                                        <div class="col-md-5"><strong>Notes:</strong> {!! $trip->fieldtrip_notes !!}</div>
+                                    {{--</div>--}}
+                                </div>
+                                <p></p>
                                 <table class="table" id="table">
                                     <thead>
                                     <th>Zone</th>
