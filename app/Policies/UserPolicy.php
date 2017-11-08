@@ -38,8 +38,4 @@ class UserPolicy
     }
 
 
-    public function crazy(User $user)
-    {
-        return $user->hasAccess(['create-user']);
-    }
 }

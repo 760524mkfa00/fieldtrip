@@ -13,6 +13,18 @@ class RolePolicy
 {
     use HandlesAuthorization;
 
+
+    /**
+     * Determine whether the user can create a role.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function view(User $user)
+    {
+        return $user->hasAccess(['view-role']);
+    }
+
     /**
      * Determine whether the user can create a role.
      *

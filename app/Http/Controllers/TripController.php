@@ -73,7 +73,7 @@ class TripController extends Controller
 
         $this->trip->create($data);
 
-        return redirect()->route('list_trips');
+        return redirect()->route('list_trips')->with('flash_message', 'Trip has been created.');
 
     }
 

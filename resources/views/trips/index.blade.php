@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -24,6 +25,8 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
+                                <div id="errors"></div>
+
                                 <table class="table table-condensed" id="table">
                                     <thead>
                                         <th>#</th>
@@ -74,6 +77,8 @@
 
         jQuery(document).ready(function() {
 
+
+
             $('.table').on('click', 'button', function(e) {
                 e.preventDefault();
 
@@ -105,12 +110,26 @@
 
                     },
                     error: function (data) {
-                        // var errors = data.responseJSON;
-                        // $.each(errors, function(index,error){
-                        //     info.find('ul').append('<li>'+error+'</li>');
-                        // });
-                        // info.slideDown();
-                        // info.delay(2500).addClass("in").slideUp(3000);
+
+                        // Log in the console
+                        var response = data.responseJSON;
+                        // console.log(errors);
+
+                        // or, what you are trying to achieve
+                        // render the response via js, pushing the error in your
+                        // blade page
+                        errorsHtml = '<div class="alert alert-danger"><ul>';
+
+                        $.each( response.errors, function( key, value ) {
+                            errorsHtml += '<li>'+ value + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
+
+
+                        $( '#errors' ).html( errorsHtml ); //appending to a <div id="form-errors"></div> inside form
+
+                        $('#errors').delay(2500).addClass("in").slideUp(3000);
+
                     }
 
                 });

@@ -40,7 +40,7 @@ class RouteController extends Controller
 
         $route = Route::create($data);
 
-        return redirect()->route('edit_route', ['id' => $route->id]);
+        return redirect()->route('list_routes')->with('flash_message', 'New route added.');
     }
 
     public function edit(Route $route)

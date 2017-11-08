@@ -70,7 +70,8 @@ Route::group(['prefix' => 'routes'], function () {
 Route::group(['prefix' => 'users'], function () {
 
     Route::get('/', 'UserController@index')
-        ->name('list_users');
+        ->name('list_users')
+        ->middleware('can:update,Fieldtrip\User');
 
 
     // TODO: Replace with the register URL
@@ -89,56 +90,71 @@ Route::group(['prefix' => 'users'], function () {
 Route::group(['prefix' => 'users/roles'], function () {
 
     Route::get('/', 'RoleController@index')
-        ->name('list_role');
+        ->name('list_role')
+        ->middleware('can:view,Fieldtrip\Role');
 
     Route::get('/create', 'RoleController@create')
-        ->name('create_role');
+        ->name('create_role')
+        ->middleware('can:create,Fieldtrip\Role');
 
     Route::post('/store', 'RoleController@store')
-        ->name('store_role');
+        ->name('store_role')
+        ->middleware('can:create,Fieldtrip\Role');
 
     Route::get('/create/{role}', 'RoleController@createPermission')
-        ->name('create_permission');
+        ->name('create_permission')
+        ->middleware('can:createPermission,Fieldtrip\Role');;
 
     Route::post('/store/{role}', 'RoleController@storePermission')
-        ->name('store_permission');
+        ->name('store_permission')
+        ->middleware('can:createPermission,role');;
 
     Route::get('/remove/{role}/{key}', 'RoleController@destroyPermission')
-        ->name('remove_permission');
+        ->name('remove_permission')
+        ->middleware('can:removePermission,role');;
 });
 
 
 Route::group(['prefix' => 'trips'], function () {
 
     Route::get('/', 'TripController@index')
-        ->name('list_trips');
+        ->name('list_trips')
+        ->middleware('can:view,Fieldtrip\Trip');
 
     Route::get('/create', 'TripController@create')
-        ->name('create_trip');
+        ->name('create_trip')
+        ->middleware('can:create,Fieldtrip\Trip');
 
     Route::post('/store', 'TripController@store')
-        ->name('store_trip');
+        ->name('store_trip')
+        ->middleware('can:create,Fieldtrip\Trip');
 
     Route::get('/edit/{trip}', 'TripController@edit')
-        ->name('edit_trip');
+        ->name('edit_trip')
+        ->middleware('can:update,trip');
 
     Route::post('/update/{trip}', 'TripController@update')
-        ->name('update_trip');
+        ->name('update_trip')
+        ->middleware('can:update,trip');
 
     Route::get('/remove/{trip}', 'TripController@destroy')
-        ->name('remove_trip');
+        ->name('remove_trip')
+        ->middleware('can:delete,trip');
 });
 
 Route::group(['prefix' => 'drivers'], function () {
 
     Route::get('/{trip}', 'DriverController@assign')
-        ->name('assign_driver');
+        ->name('assign_driver')
+        ->middleware('can:update,trip');
 
     Route::get('/{trip}/{user}', 'DriverController@assignToTrip')
-        ->name('assign_trip');
+        ->name('assign_trip')
+        ->middleware('can:update,trip');
 
     Route::put('/{user}', 'DriverController@storeTripHours')
-        ->name('store_hours');
+        ->name('store_hours')
+        ->middleware('can:update,Fieldtrip\Trip');
 
 
 });
@@ -147,21 +163,27 @@ Route::group(['prefix' => 'drivers'], function () {
 Route::group(['prefix' => 'adjustments'], function () {
 
     Route::get('/', 'AdjustmentController@index')
-        ->name('list_adjustments');
+        ->name('list_adjustments')
+        ->middleware('can:create,Fieldtrip\Adjustment');
 
     Route::get('/create', 'AdjustmentController@create')
-        ->name('create_adjustment');
+        ->name('create_adjustment')
+        ->middleware('can:create,Fieldtrip\Adjustment');
 
     Route::post('/store', 'AdjustmentController@store')
-        ->name('store_adjustment');
+        ->name('store_adjustment')
+        ->middleware('can:create,Fieldtrip\Adjustment');
 
     Route::get('/{adjustment}', 'AdjustmentController@show')
-        ->name('show_adjustment');
+        ->name('show_adjustment')
+        ->middleware('can:update,adjustment');
 
     Route::get('/hours/{adjustment}', 'AdjustmentController@hours')
-        ->name('edit_adjustment');
+        ->name('edit_adjustment')
+        ->middleware('can:update,adjustment');
 
     Route::post('/store/hours/{adjustment}', 'AdjustmentController@storeHours')
-        ->name('store_hours');
+        ->name('store_hours')
+        ->middleware('can:update,adjustment');
 
 });
