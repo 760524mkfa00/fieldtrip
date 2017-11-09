@@ -16,6 +16,8 @@ class TripOffer extends Mailable
 
     public $user;
 
+    public $url;
+
     /**
      * Create a new message instance.
      *
@@ -26,6 +28,8 @@ class TripOffer extends Mailable
         $this->trip = $trip;
 
         $this->user = $user;
+
+        $this->url = serialize([$this->trip->id, $this->user->id]);
     }
 
     /**
