@@ -75,10 +75,12 @@ class DriverController extends Controller
     public function mailable(Trip $trip)
     {
 
-        foreach($trip->user as $user) {
+        $users = $trip->user()->get();
+
+        foreach($users as $user) {
             \Mail::to($user)->send(new TripOffer($trip));
         }
-
+//
         return redirect()->route('list_trips')->with('flash_message', 'The trip details have been sent to the drivers.');
 
     }
