@@ -140,6 +140,10 @@ Route::group(['prefix' => 'trips'], function () {
     Route::get('/remove/{trip}', 'TripController@destroy')
         ->name('remove_trip')
         ->middleware('can:delete,trip');
+
+    Route::get('/mailable/{trip}', 'DriverController@mailable')
+        ->name('email_driver');
+
 });
 
 Route::group(['prefix' => 'drivers'], function () {
@@ -156,11 +160,12 @@ Route::group(['prefix' => 'drivers'], function () {
         ->name('store_hours')
         ->middleware('can:update,Fieldtrip\Trip');
 
-
 });
 
 
 Route::group(['prefix' => 'adjustments'], function () {
+
+
 
     Route::get('/', 'AdjustmentController@index')
         ->name('list_adjustments')

@@ -18,7 +18,13 @@
             <td><strong>{!! $trip->dropoff_time !!}</strong></td>
             <td><strong>{!! $trip->dropoff_location !!}</strong></td>
             <td><strong>{!! $trip->student_count !!}</strong></td>
-            <td colspan="4" style="color: red;"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>
+            <td colspan="3" style="color: red;"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>
+            <td>
+                <a title="email"
+                   href="{!! route('email_driver', $trip) !!}"
+                   class=""><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                </a>
+            </td>
             {{--TODO: Check user can remove trip--}}
             <td>
                 <a title="Remove"

@@ -4,6 +4,7 @@ namespace Fieldtrip\Http\Controllers;
 
 use Fieldtrip\Adjustment;
 use Fieldtrip\Http\Requests\UpdateDriverHours;
+use Fieldtrip\Mail\TripOffer;
 use Fieldtrip\Trip;
 use Fieldtrip\User;
 use Illuminate\Http\Request;
@@ -68,6 +69,18 @@ class DriverController extends Controller
             ->update($request->except('_token', 'button'));
 
         return \Response::json(['success' => true, 'message' => 'Information Updated!']);
+    }
+
+
+    public function mailable(Trip $trip)
+    {
+
+        foreach($trip->user as $user) {
+            \Mail::to($user)->send(new TripOffer($trip));
+        }
+
+
+
     }
 
 

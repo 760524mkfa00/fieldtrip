@@ -40,4 +40,6 @@ class Trip extends Model
         $query->where('trip_date', '>=', $startDate)->where('trip_date', '<=', $endDate);
     }
 
+
+
 }

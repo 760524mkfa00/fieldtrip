@@ -60,7 +60,7 @@ class TripPolicy
      * @param  \Fieldtrip\Zone  $zone
      * @return mixed
      */
-    public function delete(User $user, Zone $zone)
+    public function delete(User $user)
     {
         return $user->hasAccess(['remove-trip']);
     }
