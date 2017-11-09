@@ -34,7 +34,7 @@
             </td>
         </tr>
         @if($trip->user->count())
-            @include('trips\_partials\tripUser')
+            @include('trips/_partials/tripUser')
         @endif
     @endforeach
 @endforeach
