@@ -12,7 +12,7 @@
                                 {{--Trips--}}
                             {{--</div>--}}
                             <div class="col-md-11">
-                                @include('trips\_partials\filter')
+                                @include('\trips\_partials\filter')
                             </div>
                             <div class="col-md-1">
                                 {{--@can('create', Fieldtrip\Trip::class)--}}
