@@ -81,7 +81,6 @@ class DriverController extends Controller
 
         return redirect()->route('list_trips')->with('flash_message', 'The trip details have been sent to the drivers.');
 
-
     }
 
 
