@@ -126,7 +126,9 @@ class TripController extends Controller
 
     public function accept($serial)
     {
-        $data  = unserialize($serial);
+//        $data  = unserialize($serial);
+        $data  = base64_decode(strtr($serial, '._-', '+/='));
+
 
         dd($data);
     }

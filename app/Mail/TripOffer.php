@@ -29,7 +29,8 @@ class TripOffer extends Mailable
 
         $this->user = $user;
 
-        $this->url = serialize([$this->trip->id, $this->user->id]);
+        $this->url = strtr(base64_encode([$this->trip->id, $this->user->id]), '+/=', '._-');
+//        $this->url = serialize([$this->trip->id, $this->user->id]);
     }
 
     /**
