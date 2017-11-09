@@ -14,14 +14,18 @@ class TripOffer extends Mailable
 
     public $trip;
 
+    public $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Trip $trip)
+    public function __construct(Trip $trip, $user)
     {
         $this->trip = $trip;
+
+        $this->user = $user;
     }
 
     /**

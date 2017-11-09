@@ -1,5 +1,6 @@
 @component('mail::message')
-# Hello {{ $trip->user->first()->first_name . ' ' . $trip->user->first()->last_name }}
+
+# Hello {{ $user->first_name . ' ' . $user->first()->last_name }}
 
 You have been added to the following trip.
 

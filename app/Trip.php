@@ -41,11 +41,4 @@ class Trip extends Model
     }
 
 
-    public function userTrip()
-    {
-        return $this->hasMany('Fieldtrip\User');
-    }
-
-
-
 }
