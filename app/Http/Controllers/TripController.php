@@ -123,4 +123,11 @@ class TripController extends Controller
         return \Redirect::route('list_trips')->with('flash_message', 'Trip has been removed.');
 
     }
+
+    public function accept($serial)
+    {
+        $data  = unserialize($serial);
+
+        dd($data);
+    }
 }
