@@ -79,6 +79,7 @@ class DriverController extends Controller
             \Mail::to($user)->send(new TripOffer($trip));
         }
 
+        return redirect()->route('list_trips')->with('flash_message', 'The trip details have been sent to the drivers.');
 
 
     }
