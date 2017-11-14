@@ -3,6 +3,7 @@
 namespace Fieldtrip\Http\Controllers;
 
 use Carbon\Carbon;
+use Fieldtrip\Mail\TripResponse;
 use Fieldtrip\Trip;
 use Illuminate\Http\Request;
 use Fieldtrip\Rules\Contains;
@@ -45,7 +46,7 @@ class TripController extends Controller
         }
         \Session::put('dateRange', $filter);
 
-        $tripDate = $this->trip->trip($filter);
+        $tripDate = $this->trip->tripFilter($filter);
 
         return view('trips.index')
             ->withTrips($tripDate);
@@ -131,10 +132,7 @@ class TripController extends Controller
         $data  = base64_decode(strtr($serial, '._-', '+/='));
         $data  = unserialize($data);
 
-        $trip = $this->trip->with(['user' => function($query) use($data) {
-            $query->where('user_id', '=', $data['1'])->limit(1);
-        }])->where('id', $data['0'])->first();
-
+        $trip = $this->trip->singleTripUser($data['1'],$data['0']);
 
         return view('trips.response')
             ->withTrip($trip);
@@ -154,14 +152,23 @@ class TripController extends Controller
             ->where('id', $id)
             ->update($data);
 
-        // send email
+        $trip = $this->trip->singleTripUser($request->get('user_id'), $request->get('trip_id'));
 
-        return back()->with('flash_message', 'You response has been saved');
+
+        \Mail::to($trip->user->first())->send(new TripResponse($trip));
+
+        return back()->with('flash_message', 'You response has been saved, you should receive an email shortly.');
 
     }
 
 
-
+//    public function TripUser($userID, $tripID)
+//    {
+//        return $this->trip->with(['user' => function($query) use($userID) {
+//            $query->where('user_id', '=', $userID)->limit(1);
+//        }])->where('id', $tripID)->first();
+//
+//    }
 
 
 }

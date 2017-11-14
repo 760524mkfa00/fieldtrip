@@ -40,15 +40,15 @@
                                             <td></td>
                                             <td class="small"><strong>Name</strong></td>
                                             <td class="small"><strong>Unit</strong></td>
-                                            <td class="small"><strong>Hours</strong></td>
-                                            <td colspan="3" class="small"><strong>Notes</strong></td>
+                                            {{--<td class="small"><strong>Hours</strong></td>--}}
+                                            <td colspan="4" class="small"><strong>Notes</strong></td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>{!! $trip->user->first()->first_name . ' ' . $trip->user->first()->last_name !!}</td>
                                             <td>{!! $trip->user->first()->pivot->unit ?? $trip->user->first()->route->unit ?? 'none' !!}</td>
-                                            <td>{!! ($trip->user->first()->pivot->accepted_hours > 0) ?: $trip->user->first()->pivot->declined_hours !!}</td>
-                                            <td colspan="3">{!! $trip->user->first()->pivot->note !!}</td>
+{{--                                            <td>{!! ($trip->user->first()->pivot->accepted_hours > 0) ?: $trip->user->first()->pivot->declined_hours !!}</td>--}}
+                                            <td colspan="4">{!! $trip->user->first()->pivot->note !!}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -59,6 +59,8 @@
                                     <p>Please check all details are correct before accepting or declining this trip.</p>
                                     <form class="form-inline" role="form" method="POST" action="{{ route('store_response', $trip->user->first()->pivot->id) }}">
                                         {{ csrf_field() }}
+                                        <input type="hidden" name="trip_id" value="{{ $trip->id }}">
+                                        <input type="hidden" name="user_id" value="{{ $trip->user->first()->id }}">
                                         <select id='response' class="form-control form-control-sm" name="response">
                                             <option value="">Please select an options</option>
                                             <option value="accepted">Accept</option>

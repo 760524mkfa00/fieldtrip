@@ -14,12 +14,7 @@ You have been added to the following trip.
 - Notes # {{ $trip->fieldtrip_notes }}
 
 @component('mail::button', ['url' => config('app.url') . "/trips/response/{$url}"] )
-    Accept Trip
-@endcomponent
-
-
-@component('mail::button', ['url' => ''])
-    Submit Hours & Mileage
+    Respond
 @endcomponent
 
 Thanks,<br>

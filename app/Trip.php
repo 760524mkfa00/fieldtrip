@@ -16,7 +16,7 @@ class Trip extends Model
     }
 
 
-    public function trip(array $filter)
+    public function tripFilter(array $filter)
     {
 
         return $this->with('user.route', 'user')
@@ -38,6 +38,15 @@ class Trip extends Model
     public function scopeDateFilter($query, $startDate, $endDate)
     {
         $query->where('trip_date', '>=', $startDate)->where('trip_date', '<=', $endDate);
+    }
+
+
+    public function singleTripUser($userID, $tripID)
+    {
+        return $this->with(['user' => function($query) use($userID) {
+            $query->where('user_id', '=', $userID)->limit(1);
+        }])->where('id', $tripID)->first();
+
     }
 
 

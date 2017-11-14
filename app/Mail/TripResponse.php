@@ -2,19 +2,16 @@
 
 namespace Fieldtrip\Mail;
 
-use Fieldtrip\Trip;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TripOffer extends Mailable
+class TripResponse extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $trip;
-
-    public $user;
 
     public $url;
 
@@ -23,16 +20,14 @@ class TripOffer extends Mailable
      *
      * @return void
      */
-    public function __construct(Trip $trip, $user)
+    public function __construct($trip)
     {
+
         $this->trip = $trip;
 
-        $this->user = $user;
-
-        $string = serialize([$this->trip->id, $this->user->id]);
+        $string = serialize([$this->trip->id, $trip->user->first()->id]);
 
         $this->url = strtr(base64_encode($string ), '+/=', '._-');
-
     }
 
     /**
@@ -42,6 +37,6 @@ class TripOffer extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.trip');
+        return $this->markdown('email.response');
     }
 }
