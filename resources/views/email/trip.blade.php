@@ -13,7 +13,7 @@ You have been added to the following trip.
 - Students # {{ $trip->student_count }}
 - Notes # {{ $trip->fieldtrip_notes }}
 
-@component('mail::button', ['url' => "https://fieldtrip.sd23ops.ca/trips/accept/{$url}"] )
+@component('mail::button', ['url' => config('app.url') . "/trips/response/{$url}"] )
     Accept Trip
 @endcomponent
 

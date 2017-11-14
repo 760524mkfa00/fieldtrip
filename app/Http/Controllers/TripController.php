@@ -2,8 +2,10 @@
 
 namespace Fieldtrip\Http\Controllers;
 
+use Carbon\Carbon;
 use Fieldtrip\Trip;
 use Illuminate\Http\Request;
+use Fieldtrip\Rules\Contains;
 
 class TripController extends Controller
 {
@@ -13,7 +15,7 @@ class TripController extends Controller
     public function __construct(Trip $trip)
     {
 
-        $this->middleware('auth')->except('accept');
+        $this->middleware('auth')->except('response');
 
         $this->trip = $trip;
 
@@ -124,12 +126,42 @@ class TripController extends Controller
 
     }
 
-    public function accept($serial)
+    public function response($serial)
     {
         $data  = base64_decode(strtr($serial, '._-', '+/='));
         $data  = unserialize($data);
 
+        $trip = $this->trip->with(['user' => function($query) use($data) {
+            $query->where('user_id', '=', $data['1'])->limit(1);
+        }])->where('id', $data['0'])->first();
 
-        dd($data);
+
+        return view('trips.response')
+            ->withTrip($trip);
     }
+
+    public function storeResponse($id, Request $request)
+    {
+
+        $request->validate([
+            'response' => ['required', new Contains]
+        ]);
+
+        $data = $request->only('response');
+        $data['response_time'] = Carbon::now()->format('Y-m-d H:i:s');
+
+        \DB::table('trip_user')
+            ->where('id', $id)
+            ->update($data);
+
+        // send email
+
+        return back()->with('flash_message', 'You response has been saved');
+
+    }
+
+
+
+
+
 }

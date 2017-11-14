@@ -39,6 +39,10 @@
             color: red;
         }
 
+        .flash_message.error ul {
+            list-style: none;
+        }
+
         .flash_message i {
             font-size: 5em;
         }
@@ -69,7 +73,11 @@
             <div class="flash_message error">
                 <i class="fa fa-frown-o" aria-hidden="true"></i>
                 <h2>ERROR</h2>
-                <p>{{ Session::get('errors') }}</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
 

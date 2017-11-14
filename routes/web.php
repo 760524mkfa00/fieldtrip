@@ -144,8 +144,11 @@ Route::group(['prefix' => 'trips'], function () {
     Route::get('/mailable/{trip}', 'DriverController@mailable')
         ->name('email_driver');
 
-    Route::get('/accept/{serial}', 'TripController@accept')
-        ->name('accept_trip');
+    Route::get('/response/{serial}', 'TripController@response')
+        ->name('response_trip');
+
+    Route::post('/response/store/{id}', 'TripController@storeResponse')
+        ->name('store_response');
 
 
 });

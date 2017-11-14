@@ -31,7 +31,7 @@ class Trip extends Model
     public function user()
     {
         return $this->belongsToMany('Fieldtrip\User')
-            ->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'bank', 'mileage','note', 'one', 'oneHalf', 'two')
+            ->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'bank', 'mileage','note', 'one', 'oneHalf', 'two', 'response', 'response_time')
             ->withTimestamps();
     }
 
