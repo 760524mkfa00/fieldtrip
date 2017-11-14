@@ -15,7 +15,7 @@ class TripController extends Controller
     public function __construct(Trip $trip)
     {
 
-        $this->middleware('auth')->except('response');
+        $this->middleware('auth')->except('response', 'storeResponse');
 
         $this->trip = $trip;
 
