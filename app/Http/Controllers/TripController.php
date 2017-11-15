@@ -3,10 +3,13 @@
 namespace Fieldtrip\Http\Controllers;
 
 use Carbon\Carbon;
-use Fieldtrip\Mail\TripResponse;
+use Fieldtrip\Http\Requests\UpdateHours;
 use Fieldtrip\Trip;
 use Illuminate\Http\Request;
-use Fieldtrip\Rules\Contains;
+use Fieldtrip\Mail\TripResponse;
+use Fieldtrip\Http\Requests\StoreResponse;
+use function Fieldtrip\Services\serialDecode;
+use Illuminate\Support\Facades\Session;
 
 class TripController extends Controller
 {
@@ -129,31 +132,16 @@ class TripController extends Controller
 
     public function response($serial)
     {
-        $data  = base64_decode(strtr($serial, '._-', '+/='));
-        $data  = unserialize($data);
-
-        $trip = $this->trip->singleTripUser($data['1'],$data['0']);
-
         return view('trips.response')
-            ->withTrip($trip);
+            ->withTrip($this->trip->singleTripUser(serialDecode($serial)));
     }
 
-    public function storeResponse($id, Request $request)
+    public function storeResponse($id, StoreResponse $storeResponse)
     {
 
-        $request->validate([
-            'response' => ['required', new Contains]
-        ]);
+        $data = $storeResponse->persist($id);
 
-        $data = $request->only('response');
-        $data['response_time'] = Carbon::now()->format('Y-m-d H:i:s');
-
-        \DB::table('trip_user')
-            ->where('id', $id)
-            ->update($data);
-
-        $trip = $this->trip->singleTripUser($request->get('user_id'), $request->get('trip_id'));
-
+        $trip = $this->trip->singleTripUser($data);
 
         \Mail::to($trip->user->first())->send(new TripResponse($trip));
 
@@ -162,13 +150,30 @@ class TripController extends Controller
     }
 
 
-//    public function TripUser($userID, $tripID)
-//    {
-//        return $this->trip->with(['user' => function($query) use($userID) {
-//            $query->where('user_id', '=', $userID)->limit(1);
-//        }])->where('id', $tripID)->first();
-//
-//    }
+    public function submitHours($serial)
+    {
+
+        $data = serialDecode($serial);
+
+        if(Auth()->id() == $data['1'] OR Auth()->user()->can('update', Trip::class))
+        {
+        return view('trips.hours')
+            ->withTrip($this->trip->singleTripUser($data));
+        }
+
+        return redirect('home')->withErrors( 'You can only update hours for your own trips.');
+
+
+    }
+
+    public function storeHours($id, UpdateHours $updateHours)
+    {
+
+        $updateHours->persist($id);
+
+        return redirect('home')->with('flash_message', 'Your hours have been recorded');
+
+    }
 
 
 }

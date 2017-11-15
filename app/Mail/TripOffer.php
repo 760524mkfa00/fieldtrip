@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use function Fieldtrip\Services\serialEncode;
 
 class TripOffer extends Mailable
 {
@@ -29,9 +30,11 @@ class TripOffer extends Mailable
 
         $this->user = $user;
 
-        $string = serialize([$this->trip->id, $this->user->id]);
+        $this->url = serialEncode($this->trip->id, $this->user->id);
 
-        $this->url = strtr(base64_encode($string ), '+/=', '._-');
+//        $string = serialize([$this->trip->id, $this->user->id]);
+//
+//        $this->url = strtr(base64_encode($string ), '+/=', '._-');
 
     }
 

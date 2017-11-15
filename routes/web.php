@@ -150,6 +150,12 @@ Route::group(['prefix' => 'trips'], function () {
     Route::post('/response/store/{id}', 'TripController@storeResponse')
         ->name('store_response');
 
+    Route::get('/submit/hours/{serial}', 'TripController@submitHours')
+        ->name('submit_hours');
+
+    Route::post('/submit/hours/store/{id}', 'TripController@storeHours')
+        ->name('submit_hours');
+
 
 });
 

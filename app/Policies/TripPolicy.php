@@ -64,4 +64,9 @@ class TripPolicy
     {
         return $user->hasAccess(['remove-trip']);
     }
+
+    public function submitHours(User $user)
+    {
+        return $user->hasAccess(['submit-hours']);
+    }
 }

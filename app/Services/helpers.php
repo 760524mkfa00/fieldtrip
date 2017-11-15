@@ -1,11 +1,11 @@
 <?php namespace Fieldtrip\Services;
 
+
 /**
  * @param array $dataArray
  * @param array $ordering
  * @return array
  */
-
 function sortData(array $dataArray, array $ordering)
 {
 
@@ -33,4 +33,22 @@ function sortData(array $dataArray, array $ordering)
     });
 
     return $dataArray;
+}
+
+
+/**
+ * @param $serial
+ * @return mixed
+ *
+ * Decode the URL from the email
+ */
+function serialDecode($serial)
+{
+    return unserialize(base64_decode(strtr($serial, '._-', '+/=')));
+
+}
+
+function serialEncode($trip_id, $user_id)
+{
+    return strtr(base64_encode(serialize([$trip_id, $user_id])), '+/=', '._-');
 }

@@ -31,7 +31,7 @@ class Trip extends Model
     public function user()
     {
         return $this->belongsToMany('Fieldtrip\User')
-            ->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'bank', 'mileage','note', 'one', 'oneHalf', 'two', 'response', 'response_time')
+            ->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'bank', 'mileage','note', 'one', 'oneHalf', 'two', 'response', 'response_time', 'hours_submitted')
             ->withTimestamps();
     }
 
@@ -41,11 +41,15 @@ class Trip extends Model
     }
 
 
-    public function singleTripUser($userID, $tripID)
+    public function singleTripUser(array $data)
     {
-        return $this->with(['user' => function($query) use($userID) {
-            $query->where('user_id', '=', $userID)->limit(1);
-        }])->where('id', $tripID)->first();
+//        return $this->with(['user' => function($query) use($data) {
+//            $query->where('user_id', '=', $data['1'])->first();
+//        }])->where('id', $data['0'])->first();
+
+        return $this->with(['user' => function($query) use($data) {
+            $query->where('user_id', $data['1'])->first();
+        }])->find($data['0']);
 
     }
 
