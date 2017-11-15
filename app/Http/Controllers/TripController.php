@@ -143,8 +143,16 @@ class TripController extends Controller
 
         $trip = $this->trip->singleTripUser($data);
 
-        \Mail::to($trip->user->first())
-            ->send(new TripResponse($trip));
+        if($storeResponse->get('response') == 'declined') {
+            \Mail::to($trip->user->first())
+                ->cc('myrna.flaman@sd23.bc.ca')
+                ->send(new TripResponse($trip));
+        } else {
+            \Mail::to($trip->user->first())
+                ->send(new TripResponse($trip));
+        }
+
+
 
         return back()->with('flash_message', 'You response has been saved, you should receive an email shortly.');
 
