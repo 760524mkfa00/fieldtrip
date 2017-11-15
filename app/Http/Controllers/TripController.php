@@ -143,7 +143,8 @@ class TripController extends Controller
 
         $trip = $this->trip->singleTripUser($data);
 
-        \Mail::to($trip->user->first())->send(new TripResponse($trip));
+        \Mail::to($trip->user->first())
+            ->send(new TripResponse($trip));
 
         return back()->with('flash_message', 'You response has been saved, you should receive an email shortly.');
 
