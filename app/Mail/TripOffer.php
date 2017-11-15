@@ -46,7 +46,7 @@ class TripOffer extends Mailable
     public function build()
     {
         return $this
-            ->subject('RE: ' . $this->trip->field_trip_number)
+            ->subject('RE: Field Trip # ' . $this->trip->field_trip_number)
             ->markdown('email.trip');
     }
 }
