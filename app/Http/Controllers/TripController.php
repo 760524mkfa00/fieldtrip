@@ -145,7 +145,7 @@ class TripController extends Controller
 
         if($storeResponse->get('response') == 'declined') {
             \Mail::to($trip->user->first())
-                ->cc('kieranjfahy@gmail.com')
+                ->cc(config('app.coordinator'))
                 ->send(new TripResponse($trip));
         } else {
             \Mail::to($trip->user->first())
