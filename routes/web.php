@@ -141,21 +141,22 @@ Route::group(['prefix' => 'trips'], function () {
         ->name('remove_trip')
         ->middleware('can:delete,trip');
 
-    Route::get('/mailable/{trip}', 'DriverController@mailable')
-        ->name('email_driver');
+    // This is the email communication to driver
+        Route::get('/mailable/{trip}', 'DriverEmail@sendOffer')
+            ->name('email_driver');
 
-    Route::get('/response/{serial}', 'TripController@response')
-        ->name('response_trip');
+        Route::get('/response/{serial}', 'DriverEmail@response')
+            ->name('response_trip');
 
-    Route::post('/response/store/{id}', 'TripController@storeResponse')
-        ->name('store_response');
+        Route::post('/response/store/{id}', 'DriverEmail@storeResponse')
+            ->name('store_response');
 
-    Route::get('/submit/hours/{serial}', 'TripController@submitHours')
-        ->name('submit_hours');
+        Route::get('/submit/hours/{serial}', 'DriverEmail@submitHours')
+            ->name('submit_hours');
 
-    Route::post('/submit/hours/store/{id}', 'TripController@storeHours')
-        ->name('submit_hours');
-
+        Route::post('/submit/hours/store/{id}', 'DriverEmail@storeHours')
+            ->name('submit_hours');
+    // End of communication
 
 });
 

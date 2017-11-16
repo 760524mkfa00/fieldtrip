@@ -15,42 +15,6 @@
                             <div class="col-md-12">
                                 <div id="errors"></div>
                                 @include('trips/_partials/responses')
-                                {{--<table class="table table-condensed" id="table">--}}
-                                    {{--<thead>--}}
-                                        {{--<th>#</th>--}}
-                                        {{--<th>Pick Up Time</th>--}}
-                                        {{--<th>Pick Up Location</th>--}}
-                                        {{--<th>Return Time</th>--}}
-                                        {{--<th>Return Location</th>--}}
-                                        {{--<th>Students</th>--}}
-                                        {{--<th>Note</th>--}}
-                                    {{--</thead>--}}
-                                    {{--<tbody>--}}
-                                        {{--<tr>--}}
-                                            {{--<td><strong>{!! $trip->field_trip_number !!} </strong></td>--}}
-                                            {{--<td><strong>{!! $trip->pickup_time !!}</strong></td>--}}
-                                            {{--<td><strong>{!! $trip->pickup_location !!}</strong></td>--}}
-                                            {{--<td><strong>{!! $trip->dropoff_time !!}</strong></td>--}}
-                                            {{--<td><strong>{!! $trip->dropoff_location !!}</strong></td>--}}
-                                            {{--<td><strong>{!! $trip->student_count !!}</strong></td>--}}
-                                            {{--<td style="color: red;"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="small"><strong>Name</strong></td>--}}
-                                            {{--<td class="small"><strong>Unit</strong></td>--}}
-                                            {{--<td class="small"><strong>Hours</strong></td>--}}
-                                            {{--<td colspan="4" class="small"><strong>Notes</strong></td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td>{!! $trip->user->first()->first_name . ' ' . $trip->user->first()->last_name !!}</td>--}}
-                                            {{--<td>{!! $trip->user->first()->pivot->unit ?? $trip->user->first()->route->unit ?? 'none' !!}</td>--}}
-{{--                                            <td>{!! ($trip->user->first()->pivot->accepted_hours > 0) ?: $trip->user->first()->pivot->declined_hours !!}</td>--}}
-                                            {{--<td colspan="4">{!! $trip->user->first()->pivot->note !!}</td>--}}
-                                        {{--</tr>--}}
-                                    {{--</tbody>--}}
-                                {{--</table>--}}
                                 @if( !empty($trip->user->first()->pivot->response))
                                     <h3>You {{ $trip->user->first()->pivot->response }} this trip at {{ $trip->user->first()->pivot->response_time }}.</h3>
                                     <p>Please contact your coordinator if things have changed.</p>

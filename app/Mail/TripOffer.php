@@ -3,6 +3,7 @@
 namespace Fieldtrip\Mail;
 
 use Fieldtrip\Trip;
+use Fieldtrip\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -24,17 +25,13 @@ class TripOffer extends Mailable
      *
      * @return void
      */
-    public function __construct(Trip $trip, $user)
+    public function __construct(Trip $trip, User $user)
     {
         $this->trip = $trip;
 
         $this->user = $user;
 
         $this->url = serialEncode($this->trip->id, $this->user->id);
-
-//        $string = serialize([$this->trip->id, $this->user->id]);
-//
-//        $this->url = strtr(base64_encode($string ), '+/=', '._-');
 
     }
 

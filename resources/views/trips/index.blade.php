@@ -91,10 +91,11 @@
                     'one': $("input[name=one" + myValue + "]").val(),
                     'oneHalf': $("input[name=oneHalf" + myValue + "]").val(),
                     'two': $("input[name=two" + myValue + "]").val(),
-                    'bank': $("input[name=bank" + myValue + "]").is(":checked") ? 1:0,
+                    'bank': $("select[name=bank" + myValue + "]").val(),
                     'mileage': $("input[name=mileage" + myValue + "]").val(),
                     'unit': $("input[name=unit" + myValue + "]").val(),
                     'note': $("input[name=note" + myValue + "]").val(),
+                    'response': $("select[name=response" + myValue + "]").val(),
                     'button': myValue
                 };
                 $.ajax({

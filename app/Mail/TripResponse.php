@@ -2,6 +2,8 @@
 
 namespace Fieldtrip\Mail;
 
+use Fieldtrip\Trip;
+use Fieldtrip\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -14,6 +16,8 @@ class TripResponse extends Mailable
 
     public $trip;
 
+    public $user;
+
     public $url;
 
     /**
@@ -21,12 +25,14 @@ class TripResponse extends Mailable
      *
      * @return void
      */
-    public function __construct($trip)
+    public function __construct(Trip $trip, User $user)
     {
 
         $this->trip = $trip;
 
-        $this->url = serialEncode($this->trip->id, $this->trip->user->first()->id);
+        $this->user = $user;
+
+        $this->url = serialEncode($this->trip->id, $this->user->id);
 
     }
 

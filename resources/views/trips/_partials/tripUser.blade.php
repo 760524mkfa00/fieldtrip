@@ -2,7 +2,13 @@
     <form class="form-horizontal" role="form" method="POST" action="{{ route('store_hours', $user->pivot->id) }}">
         {{ csrf_field() }}
         <tr style="color: blue;">
-            <td></td>
+            <td>
+                <select id='response' class="form-control input-sm" name="response{!! $user->pivot->id !!}" {!! $user->pivot->response == 'accepted' ? 'style="color:green; font-weight:bold;"' : ''  !!}>
+                    <option value="">No Response</option>
+                    <option value="accepted" {!! $user->pivot->response == 'accepted' ? 'selected="selected"' : ''  !!}>Accept</option>
+                    <option value="declined" {!! $user->pivot->response == 'declined' ? 'selected="selected"' : ''  !!}>Decline</option>
+                </select>
+            </td>
             <td><a href="{!! route('edit_user', $user->id) !!}">{!! $user->first_name . ' ' . $user->last_name !!}</a></td>
             <td><input id="unit" type="text" class="form-control input-sm" name="unit{!! $user->pivot->id !!}" value="{!! $user->pivot->unit ?? $user->route->unit ?? 'none' !!}" required autofocus></td>
             <td><input id="accepted_hours" type="text" class="form-control input-sm" name="accepted_hours{!! $user->pivot->id !!}" value="{!! $user->pivot->accepted_hours !!}" required autofocus></td>
@@ -36,8 +42,10 @@
             {{--<td><input id="bank" type="text" class="form-control" name="bank{!! $user->pivot->id !!}" value="{!! $user->pivot->bank !!}" required autofocus>--}}
 
             <td>
-                {{--<input type="hidden" name="bank{!! $user->pivot->id !!}" value="0">--}}
-                <input type="checkbox" name="bank{!! $user->pivot->id !!}" value="{!! $user->pivot->bank !!}" {{ ($user->pivot->bank == 1) ? 'checked="checked"' : '' }}>
+                <select id='bank' class="form-control input-sm" name="bank{!! $user->pivot->id !!}">
+                    <option value="no" {!! $user->pivot->bank == 'no' ? 'selected="selected"' : ''  !!}>No</option>
+                    <option value="yes" {!! $user->pivot->bank == 'yes' ? 'selected="selected"' : ''  !!}>Yes</option>
+                </select>
             </td>
 
             <td><button type="submit" name="button" class="small" value="{!! $user->pivot->id !!}">Save</button></td>

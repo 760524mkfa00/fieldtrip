@@ -2,6 +2,7 @@
 
 namespace Fieldtrip\Http\Requests;
 
+use Fieldtrip\Rules\YesNo;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDriverHours extends FormRequest
@@ -30,7 +31,8 @@ class UpdateDriverHours extends FormRequest
             "oneHalf" => 'required|numeric|between:0,100',
             "two" => 'required|numeric|between:0,100',
             "mileage" => 'required|numeric|between:0,1000',
-            "unit" => 'required'
+            "unit" => 'required',
+            "bank" => ['required', new YesNo]
         ];
     }
 }

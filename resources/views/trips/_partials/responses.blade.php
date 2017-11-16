@@ -7,7 +7,7 @@
         <th>Return Time</th>
         <th>Return Location</th>
         <th>Students</th>
-        <th colspan="5">Note</th>
+        <th colspan="6">Note</th>
 
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
             <td><strong>{!! $trip->dropoff_time !!}</strong></td>
             <td><strong>{!! $trip->dropoff_location !!}</strong></td>
             <td><strong>{!! $trip->student_count !!}</strong></td>
-            <td style="color: red;" colspan="5"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>
+            <td style="color: red;" colspan="6"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>
 
         </tr>
         <tr>
@@ -31,6 +31,7 @@
             <td>Over Time</td>
             <td>Double OT</td>
             <td>Mileage</td>
+            <td>Bank</td>
         </tr>
         <tr>
             <td></td>
@@ -41,6 +42,7 @@
             <td>{{ $trip->user->first()->pivot->oneHalf }}</td>
             <td>{{ $trip->user->first()->pivot->two }}</td>
             <td>{{ $trip->user->first()->pivot->mileage }} Kms</td>
+            <td>{{ ucfirst($trip->user->first()->pivot->bank) }}</td>
         </tr>
         </tbody>
     </table>

@@ -1,8 +1,8 @@
 @component('mail::message')
 
-# Hello {{ $trip->user->first()->first_name . ' ' . $trip->user->first()->last_name }}
+# Hello {{ $user->first_name . ' ' . $user->last_name }}
 
-You {{ $trip->user->first()->pivot->response }} the following trip at {{ $trip->user->first()->pivot->response_time }}.
+You {{ $user->pivot->response }} the following trip at {{ $user->pivot->response_time }}.
 
 - Trip # {{ $trip->field_trip_number }}
 - Date # {{ $trip->trip_date }}
@@ -13,7 +13,7 @@ You {{ $trip->user->first()->pivot->response }} the following trip at {{ $trip->
 - Students # {{ $trip->student_count }}
 - Notes # {{ $trip->fieldtrip_notes }}
 
-@if($trip->user->first()->pivot->response === 'accepted')
+@if($user->pivot->response === 'accepted')
 
     Use the link to submit your hours once field trip is complete. You will need to log in.
 
