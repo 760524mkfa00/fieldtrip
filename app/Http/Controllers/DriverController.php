@@ -42,6 +42,13 @@ class DriverController extends Controller
             ->withLastAdjustment(Adjustment::LastAdjustmentDate());
     }
 
+    public function status()
+    {
+        return view('drivers.status')
+            ->withDrivers($this->user->sortedUser())
+            ->withLastAdjustment(Adjustment::LastAdjustmentDate());
+    }
+
     /**
      * @param Trip $trip
      * @param User $user

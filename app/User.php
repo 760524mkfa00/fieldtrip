@@ -73,7 +73,8 @@ class User extends Authenticatable
     public function trip()
     {
         return $this->belongsToMany('Fieldtrip\Trip')
-            ->withPivot('accepted_hours', 'declined_hours')->withTimestamps();
+            ->withPivot('id', 'unit', 'accepted_hours', 'declined_hours', 'bank', 'mileage','note', 'one', 'oneHalf', 'two', 'response', 'response_time', 'hours_submitted')
+            ->withTimestamps();
     }
 
 

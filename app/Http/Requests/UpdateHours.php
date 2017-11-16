@@ -37,7 +37,7 @@ class UpdateHours extends FormRequest
     public function persist($id)
     {
 
-        $data = $this->only('one', 'oneHalf', 'two', 'mileage', 'bank');
+        $data = $this->only('one', 'oneHalf', 'two', 'mileage', 'bank', 'note');
         $data['hours_submitted'] = '1';
 
         \DB::table('trip_user')

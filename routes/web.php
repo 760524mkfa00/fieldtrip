@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
+Route::get('/overtime', 'DriverController@status');
 
 Route::group(['prefix' => 'zones'], function () {
 
@@ -173,6 +173,8 @@ Route::group(['prefix' => 'drivers'], function () {
     Route::put('/{user}', 'DriverController@storeTripHours')
         ->name('store_hours')
         ->middleware('can:update,Fieldtrip\Trip');
+
+
 
 });
 

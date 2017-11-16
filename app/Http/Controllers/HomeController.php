@@ -2,6 +2,7 @@
 
 namespace Fieldtrip\Http\Controllers;
 
+use Fieldtrip\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $user = User::with('trip')->where('id',Auth()->id())->first();
+
+        $user->oneTotal = $user->trip->sum('pivot.one');
+        $user->oneHalfTotal = $user->trip->sum('pivot.oneHalf');
+        $user->twoTotal = $user->trip->sum('pivot.two');
+
+        return view('home')
+            ->withUser($user);
+
     }
 }

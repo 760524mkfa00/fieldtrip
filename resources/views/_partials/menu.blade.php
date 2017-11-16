@@ -21,6 +21,9 @@
             <ul class="nav navbar-nav">
                 @if (! Auth::guest())
 
+                    <li><a href="/home">My Trips</a></li>
+                    <li><a href="/overtime">Offered Overtime</a></li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trips <span class="caret"></span></a>
 

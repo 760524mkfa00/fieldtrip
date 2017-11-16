@@ -26,40 +26,41 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="errors"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-condensed" id="table">
+                                        <thead>
+                                            <th>#</th>
+                                            <th></th>
+                                            <th width="7%">Pick Up Time</th>
+                                            <th>Pick Up Location</th>
+                                            <th width="7%">Drop Off Time</th>
+                                            <th>Drop Off Location</th>
+                                            <th>Students</th>
+                                            <th colspan="3">Note</th>
+                                            <th></th>
+                                            <th></th>
+                                            <tr>
+                                                <td></td>
+                                                <td class="small"><strong>Name</strong></td>
+                                                <td class="small"><strong>Unit</strong></td>
+                                                <td class="small"><strong>Accepted</strong></td>
+                                                <td class="small"><strong>Decline</strong></td>
+                                                <td class="small"><strong>Note</strong></td>
 
-                                <table class="table table-condensed" id="table">
-                                    <thead>
-                                        <th>#</th>
-                                        <th></th>
-                                        <th width="7%">Pick Up Time</th>
-                                        <th>Pick Up Location</th>
-                                        <th width="7%">Drop Off Time</th>
-                                        <th>Drop Off Location</th>
-                                        <th>Students</th>
-                                        <th colspan="3">Note</th>
-                                        <th></th>
-                                        <th></th>
-                                        <tr>
-                                            <td></td>
-                                            <td class="small"><strong>Name</strong></td>
-                                            <td class="small"><strong>Unit</strong></td>
-                                            <td class="small"><strong>Accepted</strong></td>
-                                            <td class="small"><strong>Decline</strong></td>
-                                            <td class="small"><strong>Note</strong></td>
+                                                <td class="small" width="8%"><strong></strong></td>
+                                                <td class="small" width="8%"><strong></strong></td>
+                                                <td class="small" width="8%"><strong></strong></td>
 
-                                            <td class="small" width="8%"><strong></strong></td>
-                                            <td class="small" width="8%"><strong></strong></td>
-                                            <td class="small" width="8%"><strong></strong></td>
-
-                                            <td class="small" width="8%"><strong></strong></td>
-                                            <td class="small" ><strong>Bank</strong></td>
-                                            <td class="small"><strong></strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @include('trips/_partials/trips')
-                                    </tbody>
-                                </table>
+                                                <td class="small" width="8%"><strong></strong></td>
+                                                <td class="small" ><strong>Bank</strong></td>
+                                                <td class="small"><strong></strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @include('trips/_partials/trips')
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

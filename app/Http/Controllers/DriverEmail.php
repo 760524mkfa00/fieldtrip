@@ -89,7 +89,7 @@ class DriverEmail extends Controller
 
         $updateHours->persist($id);
 
-        return redirect('home')->with('flash_message', 'Your hours have been recorded');
+        return back()->with('flash_message', 'Your hours have been recorded');
 
     }
 
