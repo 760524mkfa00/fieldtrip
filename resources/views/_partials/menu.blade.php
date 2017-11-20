@@ -24,55 +24,56 @@
                     <li><a href="/home">My Trips</a></li>
                     <li><a href="/overtime">Offered Overtime</a></li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trips <span class="caret"></span></a>
+                    @can('update', Fieldtrip\Trip::class)
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trips <span class="caret"></span></a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('list_trips') }}">Trips</a>
-                            </li>
-                        </ul>
-                    </li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('list_trips') }}">Trips</a>
+                                </li>
+                            </ul>
+                        </li>
+    
+                        &nbsp;<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones <span class="caret"></span></a>
 
-                    &nbsp;<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('list_zones') }}">Zones</a>
+                                </li>
+                            </ul>
+                        </li>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('list_zones') }}">Zones</a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes <span class="caret"></span></a>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('list_routes') }}">Routes</a>
+                                </li>
+                            </ul>
+                        </li>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('list_routes') }}">Routes</a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('list_users') }}">Users</a></li>
+                                <li><a href="{{ route('list_role') }}">Roles</a></li>
+                            </ul>
+                        </li>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('list_users') }}">Users</a></li>
-                            <li><a href="{{ route('list_role') }}">Roles</a></li>
-                        </ul>
-                    </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adjustments <span class="caret"></span></a>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adjustments <span class="caret"></span></a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('list_adjustments') }}">Adjustments</a>
-                            </li>
-                        </ul>
-                    </li>
-
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('list_adjustments') }}">Adjustments</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
 
 
 
