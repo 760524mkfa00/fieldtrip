@@ -103,11 +103,14 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary" name="createAndNew" value="true">
+                                        Create and New
+                                    </button>
                                     <button type="submit" class="btn btn-primary">
                                         Create
                                     </button>
                                     <a href="{{ route('list_trips') }}" class="btn btn-primary">
-                                        Cancel
+                                        Back
                                     </a>
                                 </div>
                             </div>
