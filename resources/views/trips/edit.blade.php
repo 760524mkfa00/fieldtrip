@@ -77,6 +77,17 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('hours') ? ' has-error' : '' }}">
+                                <label for="hours" class="col-md-4 control-label">Hours</label>
+                                <div class="col-md-6">
+                                    <input id="hours" type="text" class="form-control" name="hours" value="{{ $trip->hours }}" required autofocus>
+                                    @if ($errors->has('hours'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('hours') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="form-group{{ $errors->has('student_count') ? ' has-error' : '' }}">
                                 <label for="student_count" class="col-md-4 control-label">Student Count</label>
                                 <div class="col-md-6">

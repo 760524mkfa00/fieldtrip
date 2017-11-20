@@ -35,6 +35,7 @@
                                             <th>Pick Up Location</th>
                                             <th width="7%">Drop Off Time</th>
                                             <th>Drop Off Location</th>
+                                            <th>Hours</th>
                                             <th>Students</th>
                                             <th colspan="3">Note</th>
                                             <th></th>

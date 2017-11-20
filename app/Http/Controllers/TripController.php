@@ -74,7 +74,7 @@ class TripController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->only('field_trip_number', 'trip_date', 'pickup_time', 'pickup_location', 'dropoff_time', 'dropoff_location', 'student_count', 'fieldtrip_notes');
+        $data = $request->only('field_trip_number', 'trip_date', 'pickup_time', 'pickup_location', 'dropoff_time', 'dropoff_location', 'student_count', 'fieldtrip_notes', 'hours');
 
 
         $this->trip->create($data);
@@ -109,7 +109,7 @@ class TripController extends Controller
     public function update(Request $request, Trip $trip)
     {
 
-        $data = $request->only('field_trip_number', 'trip_date', 'pickup_time', 'pickup_location', 'dropoff_time', 'dropoff_location', 'student_count', 'fieldtrip_notes');
+        $data = $request->only('field_trip_number', 'trip_date', 'pickup_time', 'pickup_location', 'dropoff_time', 'dropoff_location', 'student_count', 'fieldtrip_notes', 'hours');
         $trip->fill($data)->save();
         return \Redirect::route('list_trips')->with('flash_message', 'Trip has been updated.');
 

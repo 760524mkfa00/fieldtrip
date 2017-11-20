@@ -17,6 +17,7 @@
             <td><strong>{!! $trip->pickup_location !!}</strong></td>
             <td><strong>{!! $trip->dropoff_time !!}</strong></td>
             <td><strong>{!! $trip->dropoff_location !!}</strong></td>
+            <td><strong>{!! $trip->hours !!}</strong></td>
             <td><strong>{!! $trip->student_count !!}</strong></td>
             <td colspan="3" style="color: red;"><strong>{!! $trip->fieldtrip_notes !!}</strong></td>
             <td>
