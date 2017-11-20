@@ -136,10 +136,12 @@
                     }
 
                 });
+                window.location.reload(true);
+                // window.location.href=self.location.href
+                // window.location.href=window.location.href
                 // info.hide().find('ul').empty();
                 // flash.find('p').empty();
             });
-
 
 
             $(function() {

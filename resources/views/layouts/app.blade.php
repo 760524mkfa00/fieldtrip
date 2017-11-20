@@ -46,20 +46,42 @@
         .flash_message i {
             font-size: 5em;
         }
+
+        #mydiv {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            z-index:1000;
+            background-color:black;
+            opacity: .8;
+        }
+
+        .ajax-loader {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -200px; /* -1 * image width / 2 */
+            margin-top: -200px;  /* -1 * image height / 2 */
+            display: block;
+        }
     </style>
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
-
-
     </script>
 </head>
 <body>
     <div id="app">
 
         @include('_partials/menu')
+
+        <div id="mydiv" style="display:none;">
+            <img id="loading" class="ajax-loader" src="{!! URL::asset('ajax-loader.gif') !!}" alt="">
+        </div>
 
         @if (Session::has('flash_message'))
             <div class="flash_message success">
@@ -90,6 +112,14 @@
     @yield('footer')
     <script>
         $('.flash_message').delay(3500).addClass("in").slideUp(3000);
+
+        $(document).ready(function () {
+            $(document).ajaxStart(function () {
+                $("#mydiv").show();
+            }).ajaxStop(function () {
+                $("#mydiv").hide();
+            });
+        });
     </script>
 
 </body>
