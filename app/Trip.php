@@ -63,10 +63,7 @@ class Trip extends Model
         {
             $data['accepted_hours'] = 0;
             $data['declined_hours'] = $hours;
-        }
-
-        if($data['response'] === 'accepted')
-        {
+        } else {
             $data['accepted_hours'] = $hours;
             $data['declined_hours'] = 0;
         }
