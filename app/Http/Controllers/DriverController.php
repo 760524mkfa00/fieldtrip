@@ -18,16 +18,20 @@ class DriverController extends Controller
 
     protected $user;
 
+    protected $trip;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, Trip $trip)
     {
         $this->middleware('auth');
 
         $this->user = $user;
+
+        $this->trip = $trip;
     }
 
     /**
@@ -57,7 +61,12 @@ class DriverController extends Controller
     public function assignToTrip(Trip $trip, User $user)
     {
 
-        $trip->user()->toggle($user->id);
+        if($trip->user->contains($user->id))
+        {
+            $trip->user()->detach($user);
+        } else {
+            $trip->user()->attach($user, ['accepted_hours' => $trip->hours]);
+        }
 
         return back();
 
@@ -71,25 +80,13 @@ class DriverController extends Controller
      */
     public function storeTripHours($id, UpdateDriverHours $request)
     {
-        \DB::table('trip_user')
-            ->where('id', $id)
-            ->update($request->except('_token', 'button'));
+
+        $this->trip->storeUserTrip($id, $request->except('_token', 'button'));
 
         return \Response::json(['success' => true, 'message' => 'Information Updated!']);
+
     }
 
-
-//    public function mailable(Trip $trip)
-//    {
-//
-//        foreach($trip->user as $user) {
-//            \Mail::to($user)
-//                ->send(new TripOffer($trip, $user));
-//        }
-//
-//        return redirect()->route('list_trips')->with('flash_message', 'The trip details have been sent to the drivers.');
-//
-//    }
 
 
 }

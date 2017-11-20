@@ -11,8 +11,8 @@
             </td>
             <td><a href="{!! route('edit_user', $user->id) !!}">{!! $user->first_name . ' ' . $user->last_name !!}</a></td>
             <td><input id="unit" type="text" class="form-control input-sm" name="unit{!! $user->pivot->id !!}" value="{!! $user->pivot->unit ?? $user->route->unit ?? 'none' !!}" required autofocus></td>
-            <td><input id="accepted_hours" type="text" class="form-control input-sm" name="accepted_hours{!! $user->pivot->id !!}" value="{!! $user->pivot->accepted_hours !!}" required autofocus></td>
-            <td><input id="declined_hours" type="text" class="form-control input-sm" name="declined_hours{!! $user->pivot->id !!}" value="{!! $user->pivot->declined_hours !!}" required autofocus></td>
+            <td width="7%"><input id="accepted_hours" type="text" class="form-control input-sm" name="accepted_hours{!! $user->pivot->id !!}" value="{!! $user->pivot->accepted_hours !!}" required autofocus></td>
+            <td width="7%"><input id="declined_hours" type="text" class="form-control input-sm" name="declined_hours{!! $user->pivot->id !!}" value="{!! $user->pivot->declined_hours !!}" required autofocus></td>
             <td ><input id="note" type="text" class="form-control input-sm" style="color: red;" name="note{!! $user->pivot->id !!}" value="{!! $user->pivot->note !!}" autofocus></td>
             <td>
                 <div class="input-group">

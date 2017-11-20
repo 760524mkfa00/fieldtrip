@@ -4,10 +4,13 @@ namespace Fieldtrip\Http\Requests;
 
 use Carbon\Carbon;
 use Fieldtrip\Rules\Contains;
+use Fieldtrip\Trip;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreResponse extends FormRequest
 {
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -32,13 +35,18 @@ class StoreResponse extends FormRequest
 
     public function persist($id)
     {
+        $trip = New Trip();
 
-        $data = $this->only('response');
-        $data['response_time'] = Carbon::now()->format('Y-m-d H:i:s');
-
-        \DB::table('trip_user')
+        $data = \DB::table('trip_user')
             ->where('id', $id)
-            ->update($data);
+            ->first();
+
+        $data->response = $this->input('response');
+        $data->response_time = Carbon::now()->format('Y-m-d H:i:s');
+
+        $array = json_decode(json_encode($data), true);
+
+        $trip->storeUserTrip($id, $array);
 
         return [$this->get('trip_id'),$this->get('user_id')];
 
