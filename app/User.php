@@ -82,6 +82,7 @@ class User extends Authenticatable
     {
         $totals = User::with('trip', 'route', 'route.zone', 'adjustments')
             ->where('job', '=', 'driver')
+            ->where('active', '=', 'yes')
             ->get();
 
         $totals->lastAdjustment = Adjustment::LastAdjustmentDate();

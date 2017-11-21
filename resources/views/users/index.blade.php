@@ -16,7 +16,7 @@
                             <div class="col-md-12">
                                 <table class="table" id="table">
                                     <thead>
-                                        <th>#</th>
+                                        <th>Employee #</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email Address</th>
@@ -32,7 +32,7 @@
                                     <tbody>
                                     @foreach($users as $user)
                                         <tr>
-                                            <td><strong> {!! $user->id !!}</strong></td>
+                                            <td><strong> {!! $user->employee_number !!}</strong></td>
                                             <td><strong> {!! $user->first_name !!}</strong></td>
                                             <td><strong> {!! $user->last_name !!}</strong></td>
                                             <td><strong> {!! $user->email !!}</strong></td>

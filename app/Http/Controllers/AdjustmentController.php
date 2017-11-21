@@ -54,7 +54,9 @@ class AdjustmentController extends Controller
     {
 
         return view('adjustments.show')
-            ->withAdjustments($adjustment->load('users'));
+            ->withAdjustments($adjustment->load(['users' => function ($query) {
+                $query->where('active', '=', 'yes');
+            }]));
 
     }
 
@@ -67,6 +69,7 @@ class AdjustmentController extends Controller
                     $query->where('adjustment_id', '=', $adjustment->id);
                 }])
                 ->where('job','=','driver')
+                ->where('active', '=', 'yes')
                 ->orderBy('last_name')
                 ->get());
 
