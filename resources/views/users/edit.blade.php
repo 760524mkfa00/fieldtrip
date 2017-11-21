@@ -14,6 +14,20 @@
                                 <form class="form-horizontal" role="form" method="POST" action="{{ route('update_user', $user->id) }}">
                                     {{ csrf_field() }}
 
+                                    <div class="form-group{{ $errors->has('employee_number') ? ' has-error' : '' }}">
+                                        <label for="employee_number" class="col-md-4 control-label">Employee Number</label>
+
+                                        <div class="col-md-6">
+                                            <input id="employee_number" type="text" class="form-control" name="employee_number" value="{{ $user->employee_number }}" readonly autofocus>
+
+                                            @if ($errors->has('employee_number'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('employee_number') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                         <label for="first_name" class="col-md-4 control-label">First Name</label>
 
@@ -125,8 +139,24 @@
                                             <select id="role" class="form-control" name="role" required>
                                                 <option value="" selected disabled hidden>Select Role</option>
                                                 @foreach($roles as $id => $role)
-                                                    <option value="{{$role->id}}" {{ $current->id == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
+                                                    <option value="{{$id}}" {{ $current->id == $id ? 'selected' : '' }}>{{$role}}</option>
                                                 @endforeach
+                                            </select>
+
+                                            @if ($errors->has('role'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
+                                        <label for="role" class="col-md-4 control-label">Active</label>
+                                        <div class="col-md-6">
+                                            <select id="active" class="form-control" name="active" required>
+                                                <option value="no" {!! $user->active == 'no' ? 'selected="selected"' : ''  !!}>No</option>
+                                                <option value="yes" {!! $user->active == 'yes' ? 'selected="selected"' : ''  !!}>Yes</option>
                                             </select>
 
                                             @if ($errors->has('role'))

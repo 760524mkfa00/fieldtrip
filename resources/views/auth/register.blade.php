@@ -10,6 +10,20 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('employee_number') ? ' has-error' : '' }}">
+                            <label for="employee_number" class="col-md-4 control-label">Employee Number</label>
+
+                            <div class="col-md-6">
+                                <input id="employee_number" type="text" class="form-control" name="employee_number" value="{{ old('employee_number') }}" required autofocus>
+
+                                @if ($errors->has('first_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                             <label for="first_name" class="col-md-4 control-label">First Name</label>
 
@@ -76,11 +90,10 @@
 
                         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                             <label for="role" class="col-md-4 control-label">User role</label>
-
                             <div class="col-md-6">
                                 <select id="role" class="form-control" name="role" required>
                                     @foreach($roles as $id => $role)
-                                        <option value="{{$id}}">{{$role->name}}</option>
+                                        <option value="{{$id}}">{{$role}}</option>
                                     @endforeach
                                 </select>
 

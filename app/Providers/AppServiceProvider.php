@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 return Role::all();
             });
 
-            $view->with('roles', $roles);
+            $view->with('roles', array_pluck($roles, 'name', 'id'));
 
         });
 
