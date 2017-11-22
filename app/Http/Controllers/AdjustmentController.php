@@ -41,12 +41,60 @@ class AdjustmentController extends Controller
     {
 
         $request->validate([
-            'adjDate' => 'required|date|unique:adjustments'
+            'adjDate' => 'required|date|unique:adjustments',
+            'csv_file' => 'required|file'
         ]);
 
-        Adjustment::create([
+        $path = $request->file('csv_file')->getRealPath();
+
+        $array = array_map('str_getcsv', file($path));
+
+        $header = ['name', 'employee_number', 'job', 'ohrs1', 'timeHalf', 'timeDouble', 'straight'];
+
+        $i = 0;
+
+        foreach ($array as $row)
+        {
+
+            foreach($header as $index => $value)
+            {
+                $data[$i][$value] = $row[$index];
+            }
+            $i++;
+        }
+
+        $data = collect($data);
+
+        $filtered = $data->filter(function ($item) {
+            return $item['employee_number'] > 0;
+        });
+
+
+        $adjustment = Adjustment::create([
             'adjDate' => $request->input('adjDate'),
         ]);
+
+
+        $users = User::where('job','=','driver')
+                ->where('active', '=', 'yes')
+                ->get();
+
+
+        $dataTotal = [];
+        foreach($users as $user)
+        {
+            foreach($filtered as $filter)
+            {
+
+                if($user->employee_number == $filter['employee_number']) {
+                    $total = (double) ($filter['timeHalf'] * 1.5) + ($filter['timeDouble'] * 2) + $filter['straight'];
+                    $dataTotal[$user->id] = ['hours' => $total];
+                }
+            }
+        }
+
+        $adjustment->users()->sync($dataTotal);
+
         return \Redirect::route('list_adjustments')->with('flash_message', 'Adjustment has been created.');
     }
 
