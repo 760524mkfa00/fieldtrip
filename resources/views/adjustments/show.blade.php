@@ -20,7 +20,7 @@
                                     <tbody>
                                     @foreach($adjustments->users as $user)
                                         <tr>
-                                            <td><strong> {!! $user->id !!}</strong></td>
+                                            <td><strong> {!! $user->employee_number !!}</strong></td>
                                             <td><strong> {!! $user->first_name . ' ' . $user->last_name !!}</strong></td>
                                             <td><strong> {!! $user->pivot->hours !!}</strong></td>
                                         </tr>

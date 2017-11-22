@@ -243,4 +243,14 @@ return [
 
     ],
 
+    'headers' => [
+        'name',
+        'employee_number',
+        'job',
+        'ohrs1',
+        'timeHalf',
+        'timeDouble',
+        'straight'
+    ]
+
 ];

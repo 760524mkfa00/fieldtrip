@@ -108,5 +108,29 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * Scope a query to only include Drivers.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeDriver($query)
+    {
+        return $query->where('job','=','driver');
+    }
+
+    /**
+     * Scope a query to only include active users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', '=', 'yes');
+    }
+
+
+
 
 }

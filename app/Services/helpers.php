@@ -52,3 +52,24 @@ function serialEncode($trip_id, $user_id)
 {
     return strtr(base64_encode(serialize([$trip_id, $user_id])), '+/=', '._-');
 }
+
+
+// Set the array keys with readable header names.
+function setArrayKeyNames(array $array, array $header = NULL)
+{
+
+    $header = $header ?? config('app.headers');
+
+    $i = 0;
+    foreach ($array as $row)
+    {
+        foreach($header as $index => $value)
+        {
+            $data[$i][$value] = $row[$index];
+        }
+        $i++;
+    }
+
+    return collect($data);
+
+}

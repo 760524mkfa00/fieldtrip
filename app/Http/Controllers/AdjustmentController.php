@@ -3,6 +3,7 @@
 namespace Fieldtrip\Http\Controllers;
 
 use Fieldtrip\Adjustment;
+use function Fieldtrip\Services\setArrayKeyNames;
 use Fieldtrip\User;
 use Illuminate\Http\Request;
 
@@ -49,53 +50,43 @@ class AdjustmentController extends Controller
 
         $array = array_map('str_getcsv', file($path));
 
-        $header = ['name', 'employee_number', 'job', 'ohrs1', 'timeHalf', 'timeDouble', 'straight'];
 
-        $i = 0;
+        // set the array keys
+        $data = setArrayKeyNames($array);
 
-        foreach ($array as $row)
-        {
+        // get the active drivers from the users table
+        $users = User::driver()->active()->get();
 
-            foreach($header as $index => $value)
-            {
-                $data[$i][$value] = $row[$index];
-            }
-            $i++;
-        }
 
-        $data = collect($data);
-
+        // get rid of rows that do not have an employee number
         $filtered = $data->filter(function ($item) {
             return $item['employee_number'] > 0;
+        })->map( function ($items) {
+            $items['totalHours'] = ((double) ($items['timeHalf'] * 1.5) + ($items['timeDouble'] * 2) + $items['straight']);
+            return $items;
         });
 
+        //loop through drivers, for each driver loop through the filtered data, when employee numbers match, store the user ID and calculate the adjustment hours
+        foreach($users as $user) {
+            $dataTotal[$user->id] = ['hours' => '0'];
+            foreach($filtered as $filter) {
+                if($user->employee_number == $filter['employee_number']) {
+                    $dataTotal[$user->id] = ['hours' => $filter['totalHours']];
+                }
+            }
+        }
 
+        // Save the date
         $adjustment = Adjustment::create([
             'adjDate' => $request->input('adjDate'),
         ]);
 
 
-        $users = User::where('job','=','driver')
-                ->where('active', '=', 'yes')
-                ->get();
-
-
-        $dataTotal = [];
-        foreach($users as $user)
-        {
-            foreach($filtered as $filter)
-            {
-
-                if($user->employee_number == $filter['employee_number']) {
-                    $total = (double) ($filter['timeHalf'] * 1.5) + ($filter['timeDouble'] * 2) + $filter['straight'];
-                    $dataTotal[$user->id] = ['hours' => $total];
-                }
-            }
-        }
-
+        // save the adjustment hours
         $adjustment->users()->sync($dataTotal);
 
         return \Redirect::route('list_adjustments')->with('flash_message', 'Adjustment has been created.');
+
     }
 
     public function show(Adjustment $adjustment)
@@ -103,7 +94,7 @@ class AdjustmentController extends Controller
 
         return view('adjustments.show')
             ->withAdjustments($adjustment->load(['users' => function ($query) {
-                $query->where('active', '=', 'yes');
+                $query->driver()->active()->orderBy('last_name');
             }]));
 
     }
@@ -141,6 +132,5 @@ class AdjustmentController extends Controller
 
 
     }
-
 
 }
