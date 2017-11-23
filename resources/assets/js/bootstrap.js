@@ -10,7 +10,9 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    window.Popper = require('popper.js').default;
+
+    require('bootstrap');
 } catch (e) {}
 
 /**
@@ -40,11 +42,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 dt = require( 'datatables.net' );
-require( 'datatables.net-bs' );
+require( 'datatables.net-bs4' );
 require( 'datatables.net-buttons' );
-require( 'datatables.net-buttons-bs' );
+require( 'datatables.net-buttons-bs4' );
 require( 'datatables.net-buttons/js/buttons.colVis' );
 require( 'datatables.net-buttons/js/buttons.html5' );
 require( 'datatables.net-buttons/js/buttons.flash' );
 require( 'datatables.net-buttons/js/buttons.print' );
-require( 'datatables.net-buttons/js/dataTables.buttons' );
+// require( 'datatables.net-buttons/js/dataTables.buttons' );

@@ -2,10 +2,63 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import "~font-awesome/scss/font-awesome.scss";
-@import "~datatables.net-bs/css/dataTables.bootstrap";
-@import "~datatables.net-buttons-bs/css/buttons.bootstrap";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4";
+@import "~datatables.net-buttons-bs4/css/buttons.bootstrap4";
 // Variables
 @import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/scss/bootstrap.scss";
+
+.flash_message {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  z-index: 1000;
+  padding: 40px;
+  font-size: 1.2em;
+  max-width: 400px;
+  height: auto;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+  -webkit-box-shadow: 9px 7px 36px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 9px 7px 36px -12px rgba(0,0,0,0.75);
+  box-shadow: 9px 7px 36px -12px rgba(0,0,0,0.75);
+}
+
+.flash_message.success {
+  color: green;
+}
+
+.flash_message.error {
+  color: red;
+}
+
+.flash_message.error ul {
+  list-style: none;
+}
+
+.flash_message i {
+  font-size: 5em;
+}
+
+#mydiv {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1000;
+  background-color:black;
+  opacity: .8;
+}
+
+.ajax-loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px; /* -1 * image width / 2 */
+  margin-top: -200px;  /* -1 * image height / 2 */
+  display: block;
+}

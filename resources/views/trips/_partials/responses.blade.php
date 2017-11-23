@@ -1,14 +1,13 @@
-<div class="table-responsive">
-    <table class="table table-condensed" id="table">
-        <thead>
-        <th>#</th>
-        <th>Pick Up Time</th>
-        <th>Pick Up Location</th>
-        <th>Return Time</th>
-        <th>Return Location</th>
-        <th>Students</th>
-        <th colspan="6">Note</th>
 
+    <table class="table table-responsive-xl" id="table">
+        <thead class="thead-dark">
+            <th scope="col">#</th>
+            <th scope="col">Pick Up Time</th>
+            <th scope="col">Pick Up Location</th>
+            <th scope="col">Return Time</th>
+            <th scope="col">Return Location</th>
+            <th scope="col">Students</th>
+            <th scope="col" colspan="6">Note</th>
         </thead>
         <tbody>
         <tr>
@@ -46,4 +45,3 @@
         </tr>
         </tbody>
     </table>
-</div>

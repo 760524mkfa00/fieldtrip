@@ -1,47 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-md-offset-0">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
                         Routes
                         @can('create', Fieldtrip\Route::class)
-                            <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_route') }}">New</a>
+                            <a class="float-right btn btn-sm btn-primary" href="{{ route('create_route') }}">New Route</a>
                         @endcan
                     </div>
 
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table class="table" id="table">
-                                    <thead>
-                                    {{--<th>#</th>--}}
-                                    <th>Zone</th>
-                                    <th>Route</th>
-                                    <th>Unit</th>
-                                    <th>End Time AM</th>
-                                    <th>End Point AM</th>
-                                    <th>Start Time PM</th>
-                                    <th>Start Point PM</th>
-                                    <th>End Time PM</th>
-                                    @can('update', Fieldtrip\Route::class)
-                                        <th class="nosort"></th>
-                                        <th class="nosort"></th>
-                                    @endcan
-                                    {{--<th></th>--}}
-                                    </thead>
-                                    <tbody>
-                                        @can('update',  Fieldtrip\Route::class)
-                                            @include('routes/_partials/adminRoutes')
-                                        @else
-                                            @include('routes/_partials/userRoutes')
-                                        @endcan
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                        <table class="table table-responsive-xl" style="border-collapse: collapse !important;" id="table">
+                            <thead class="thead-dark">
+                            {{--<th>#</th>--}}
+                            <th scope="col">Zone</th>
+                            <th scope="col">Route</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">End Time AM</th>
+                            <th scope="col">End Point AM</th>
+                            <th scope="col">Start Time PM</th>
+                            <th scope="col">Start Point PM</th>
+                            <th scope="col">End Time PM</th>
+                            @can('update', Fieldtrip\Route::class)
+                                <th class="nosort"></th>
+                                <th class="nosort"></th>
+                            @endcan
+                            {{--<th></th>--}}
+                            </thead>
+                            <tbody>
+                                @can('update',  Fieldtrip\Route::class)
+                                    @include('routes/_partials/adminRoutes')
+                                @else
+                                    @include('routes/_partials/userRoutes')
+                                @endcan
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Update Route</div>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-4">
+                <div class="card">
+                    <div class="card-header">Update Route</div>
 
-                    <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('update_route', ['route' => $route->id]) }}">
+                    <div class="card-body">
+                        <form role="form" method="POST" action="{{ route('update_route', ['route' => $route->id]) }}">
                             {{ csrf_field() }}
 
                             @include('routes/_partials/form', ['buttonText' => 'Update'])

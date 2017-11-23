@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
                         Zones
                         @can('create', Fieldtrip\Zone::class)
                             <a class="pull-right btn btn-sm btn-primary" href="{{ route('create_zone') }}">New</a>
                         @endcan
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <div class="row">
                             @foreach($zones as $zone)
                                 <div class="col-sm-6 col-md-4">

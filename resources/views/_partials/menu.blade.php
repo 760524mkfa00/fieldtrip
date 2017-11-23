@@ -1,77 +1,56 @@
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Trip Connect') }}
-            </a>
-        </div>
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Trip Connect') }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 @if (! Auth::guest())
 
-                    <li><a href="/home">My Trips</a></li>
-                    <li><a href="/overtime">Offered Overtime</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/home">My Trips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/overtime">Offered Overtime</a></li>
 
                     @can('update', Fieldtrip\Trip::class)
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trips <span class="caret"></span></a>
+                        <li class="nav-item dropdown show">
+                            <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trips </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ route('list_trips') }}">Trips</a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu" role="menu">
+                                    <a class="nav-link" href="{{ route('list_trips') }}">Trips</a>
+                            </div>
                         </li>
 
-                        &nbsp;<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones <span class="caret"></span></a>
+                        &nbsp;<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ route('list_zones') }}">Zones</a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu" role="menu">
+                                    <a class="nav-link" href="{{ route('list_zones') }}">Zones</a>
+                            </div>
                         </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ route('list_routes') }}">Routes</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes </a>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="nav-link" href="{{ route('list_routes') }}">Routes</a>
+                            </div>
                         </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('list_users') }}">Users</a></li>
-                                <li><a href="{{ route('list_role') }}">Roles</a></li>
-                            </ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link" href="{{ route('list_users') }}">Users</a>
+                                <a class="nav-link" href="{{ route('list_role') }}">Roles</a>
+                            </div>
                         </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adjustments <span class="caret"></span></a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adjustments <span class="caret"></span></a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ route('list_adjustments') }}">Adjustments</a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="nav-link" href="{{ route('list_adjustments') }}">Adjustments</a>
+                            </div>
                         </li>
                     @endcan
 
@@ -81,30 +60,26 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }} <span class="caret"></span>
-                        </a>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right"></i>
-                                    Logout
-                                </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout <i class="fa fa-sign-out float-right"></i>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </li>
                 @endif
             </ul>

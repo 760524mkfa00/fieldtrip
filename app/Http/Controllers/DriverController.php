@@ -88,5 +88,13 @@ class DriverController extends Controller
     }
 
 
+    public function currentOvertimeAdjustment($date)
+    {
+        return view('drivers.status')
+            ->withDrivers($this->user->sortedUser($date))
+            ->withLastAdjustment($date ?? Adjustment::LastAdjustmentDate());
+    }
+
+
 
 }

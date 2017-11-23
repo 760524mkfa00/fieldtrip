@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/overtime', 'DriverController@status');
+Route::get('/overtime-by-adjustment-date/{date}', 'DriverController@currentOvertimeAdjustment')
+    ->name('ot_report');
 
 Route::group(['prefix' => 'zones'], function () {
 
