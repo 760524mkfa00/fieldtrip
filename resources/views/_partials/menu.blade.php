@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
-    <div class="container-fluid">
+<nav class="navbar fixed-top navbar-expand-xl navbar-dark bg-dark">
+    {{--<div class="container-fluid">--}}
         <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Trip Connect') }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
                             <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trips </a>
 
                             <div class="dropdown-menu" role="menu">
-                                    <a class="nav-link" href="{{ route('list_trips') }}">Trips</a>
+                                    <a class="dropdown-item" href="{{ route('list_trips') }}">Trips</a>
                             </div>
                         </li>
 
@@ -26,22 +26,22 @@
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zones </a>
 
                             <div class="dropdown-menu" role="menu">
-                                    <a class="nav-link" href="{{ route('list_zones') }}">Zones</a>
+                                    <a class="dropdown-item" href="{{ route('list_zones') }}">Zones</a>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Routes </a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="nav-link" href="{{ route('list_routes') }}">Routes</a>
+                                <a class="dropdown-item" href="{{ route('list_routes') }}">Routes</a>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
                             <div class="dropdown-menu">
-                                <a class="nav-link" href="{{ route('list_users') }}">Users</a>
-                                <a class="nav-link" href="{{ route('list_role') }}">Roles</a>
+                                <a class="dropdown-item" href="{{ route('list_users') }}">Users</a>
+                                <a class="dropdown-item" href="{{ route('list_role') }}">Roles</a>
                             </div>
                         </li>
 
@@ -49,7 +49,7 @@
                             <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adjustments <span class="caret"></span></a>
 
                             <div class="dropdown-menu" role="menu">
-                                <a class="nav-link" href="{{ route('list_adjustments') }}">Adjustments</a>
+                                <a class="dropdown-item" href="{{ route('list_adjustments') }}">Adjustments</a>
                             </div>
                         </li>
                     @endcan
@@ -71,7 +71,7 @@
                             {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</a>
 
                         <div class="dropdown-menu dropdown-menu-right" role="menu">
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout <i class="fa fa-sign-out float-right"></i>
 
                             </a>
@@ -84,5 +84,5 @@
                 @endif
             </ul>
         </div>
-    </div>
+    {{--</div>--}}
 </nav>
