@@ -16,6 +16,7 @@
     "jquery": "^3.1.1",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
+    "pdfmake": "github:danishin/pdfmake",
     "popper.js": "^1.12.9",
     "vue": "^2.1.10"
   },
@@ -27,6 +28,7 @@
     "datatables.net-buttons-bs": "^1.4.2",
     "datatables.net-buttons-bs4": "^1.4.2",
     "font-awesome": "^4.7.0",
+    "jszip": "^3.1.5",
     "npm": "^5.5.1"
   }
 }

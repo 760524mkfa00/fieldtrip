@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <table class="table" id="table">
-                            <thead class="thead-dark">
+                            <thead class="thead-grey">
                                 <th scope="col">#</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">View</th>

@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <div id="errors"></div>
                         <table class="table table-responsive" id="table">
-                            <thead class="thead-dark">
+                            <thead class="thead-grey">
                                 <th scope="col">#</th>
                                 <th scope="col"></th>
                                 <th scope="col" width="7%">Pick Up Time</th>
@@ -35,21 +35,21 @@
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                                 <tr>
-                                    <td></td>
-                                    <td class="small"><strong>Name</strong></td>
-                                    <td class="small"><strong>Unit</strong></td>
-                                    <td class="small"><strong>Accepted</strong></td>
-                                    <td class="small"><strong>Decline</strong></td>
-                                    <td class="small"><strong>Note</strong></td>
+                                    <th></th>
+                                    <th class="small"><strong>Name</strong></th>
+                                    <th class="small"><strong>Unit</strong></th>
+                                    <th class="small"><strong>Accepted</strong></th>
+                                    <th class="small"><strong>Decline</strong></th>
+                                    <th class="small"><strong>Note</strong></th>
 
-                                    <td class="small" width="8%"><strong></strong></td>
-                                    <td class="small" width="8%"><strong></strong></td>
-                                    <td class="small" width="8%"><strong></strong></td>
+                                    <th class="small" width="8%"><strong></strong></th>
+                                    <th class="small" width="8%"><strong></strong></th>
+                                    <th class="small" width="8%"><strong></strong></th>
 
-                                    <td class="small" width="8%"><strong></strong></td>
-                                    <td class="small" ><strong>Bank</strong></td>
-                                    <td class="small"><strong></strong></td>
-                                    <td></td>
+                                    <th class="small" width="8%"><strong></strong></th>
+                                    <th class="small" ><strong>Bank</strong></th>
+                                    <th class="small"><strong></strong></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,7 +178,6 @@
 
                 });
             });
-
 
         });
 

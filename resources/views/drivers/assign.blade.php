@@ -21,7 +21,7 @@
                         </div>
                         <p></p>
                         <table class="table table-responsive-xl" id="table">
-                            <thead class="thead-dark">
+                            <thead class="thead-grey">
                                 <th scope="col">Zone</th>
                                 <th scope="col">Route</th>
                                 <th scope="col">End AM</th>

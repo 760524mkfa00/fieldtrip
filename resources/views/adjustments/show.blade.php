@@ -10,7 +10,7 @@
                     </div>
                     <div class="panel-body">
                         <table class="table" id="table">
-                            <thead class="thead-dark">
+                            <thead class="thead-grey">
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Hours</th>

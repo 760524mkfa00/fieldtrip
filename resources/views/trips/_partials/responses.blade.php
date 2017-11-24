@@ -1,6 +1,6 @@
 
     <table class="table table-responsive-xl" id="table">
-        <thead class="thead-dark">
+        <thead class="thead-grey">
             <th scope="col">#</th>
             <th scope="col">Pick Up Time</th>
             <th scope="col">Pick Up Location</th>

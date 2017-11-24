@@ -42,11 +42,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 dt = require( 'datatables.net' );
+require( 'jszip' );
+require( 'pdfmake/build/pdfmake.js' );
+require('pdfmake/build/vfs_fonts.js');
 require( 'datatables.net-bs4' );
-require( 'datatables.net-buttons' );
 require( 'datatables.net-buttons-bs4' );
-require( 'datatables.net-buttons/js/buttons.colVis' );
 require( 'datatables.net-buttons/js/buttons.html5' );
-require( 'datatables.net-buttons/js/buttons.flash' );
 require( 'datatables.net-buttons/js/buttons.print' );
-// require( 'datatables.net-buttons/js/dataTables.buttons' );

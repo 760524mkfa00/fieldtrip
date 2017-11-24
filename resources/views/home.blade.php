@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <table class="table table-responsive-xl" id="table">
                         <caption>Legend: (1 - Straight Time, 1.5 - Overtime, 2 - Double Time)</caption>
-                        <thead class="thead-dark">
+                        <thead class="thead-grey">
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
                             <th scope="col">Pick Up Time</th>
@@ -59,4 +59,62 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer')
+
+    <script>
+        $(document).ready(function () {
+
+            $(function () {
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    aoColumnDefs: [{
+                        'bSortable': false,
+                        'aTargets': ['nosort']
+                    }],
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL',
+                            // exportOptions: {
+                            //     columns: [ 1, 2, 3, 4, 5, 6, 7, 10, 11, 12 ]
+                            // },
+                            customize : function(doc) {
+                                // doc.pageMargins = [10, 10, 10,10 ];
+                                doc.content[1].table.widths =
+                                    Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            orientation: 'landscape',
+                            // exportOptions: {
+                            //     columns: [ 1, 2, 3, 4, 5, 6, 7, 10, 11, 12 ]
+                            // },
+                            customize: function ( win ) {
+                                $(win.document.body)
+                                    .css( 'font-size', '10pt' )
+                                    .prepend(
+                                        '<img src="https://www.busboss.com/hubfs/layout-2017/home/block1-bus.png" style="position:absolute; top:0; right:0; opacity: .1; width: 400px;" />'
+                                    );
+
+                                $(win.document.body).find( 'table' )
+                                    .addClass( 'compact table-sm' )
+                                    .css( 'font-size', 'inherit' );
+                            }
+                        }
+                    ],
+                    paging: true,
+                    pageLength: 120,
+                    lengthMenu: [
+                        [15, 30, 60, 120, -1],
+                        ['15 Rows', '30 Rows', '60 Rows', '120 Rows', 'Show All']
+                    ]
+                });
+            });
+        });
+    </script>
+
 @endsection

@@ -12,7 +12,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('store_hours', $adjustments->id) }}">
                             {{ csrf_field() }}
                             <table class="table" id="table">
-                                <thead class="thead-dark">
+                                <thead class="thead-grey">
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Hours</th>

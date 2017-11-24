@@ -10,7 +10,7 @@
                     </div>
                     <div class="card-body">
                         <table class="table table-responsive-xl" style="border-collapse: collapse !important;" id="table">
-                            <thead class="thead-dark">
+                            <thead class="thead-grey">
                                 <th>Zone</th>
                                 <th>Route</th>
                                 <th>End AM</th>
@@ -65,7 +65,37 @@
                     }],
                     buttons: [
                         'pageLength',
-                        'print',
+                        {
+                            extend: 'pdfHtml5',
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL',
+                            exportOptions: {
+                                columns: [ 1, 2, 3, 4, 5, 6, 7, 10, 11, 12 ]
+                            },
+                            customize : function(doc) {
+                                // doc.pageMargins = [10, 10, 10,10 ];
+                                doc.content[1].table.widths =
+                                    Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                                }
+                        },
+                        {
+                            extend: 'print',
+                            orientation: 'landscape',
+                            exportOptions: {
+                                columns: [ 1, 2, 3, 4, 5, 6, 7, 10, 11, 12 ]
+                            },
+                            customize: function ( win ) {
+                                $(win.document.body)
+                                    .css( 'font-size', '10pt' )
+                                    .prepend(
+                                        '<img src="https://www.busboss.com/hubfs/layout-2017/home/block1-bus.png" style="position:absolute; top:0; right:0; opacity: .1; width: 400px;" />'
+                                    );
+
+                                $(win.document.body).find( 'table' )
+                                    .addClass( 'compact table-sm' )
+                                    .css( 'font-size', 'inherit' );
+                            }
+                        }
                     ],
                     paging: true,
                     pageLength: 120,

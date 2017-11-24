@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                         <table class="table table-responsive-xl" style="border-collapse: collapse !important;" id="table">
-                            <thead class="thead-dark">
+                            <thead class="thead-grey">
                             {{--<th>#</th>--}}
                             <th scope="col">Zone</th>
                             <th scope="col">Route</th>
