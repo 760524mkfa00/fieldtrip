@@ -56,16 +56,17 @@ class Trip extends Model
 
     public function storeUserTrip($id, array $data)
     {
+        if(array_key_exists('response_time', $data)) {
+            $hours = ($data['accepted_hours'] > $data['declined_hours'])? $data['accepted_hours'] : $data['declined_hours'];
 
-        $hours = ($data['accepted_hours'] > $data['declined_hours'])? $data['accepted_hours'] : $data['declined_hours'];
-
-        if($data['response'] === 'declined')
-        {
-            $data['accepted_hours'] = 0;
-            $data['declined_hours'] = $hours;
-        } else {
-            $data['accepted_hours'] = $hours;
-            $data['declined_hours'] = 0;
+            if($data['response'] === 'declined')
+            {
+                $data['accepted_hours'] = 0;
+                $data['declined_hours'] = $hours;
+            } else {
+                $data['accepted_hours'] = $hours;
+                $data['declined_hours'] = 0;
+            }
         }
 
         \DB::table('trip_user')

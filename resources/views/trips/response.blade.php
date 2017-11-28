@@ -18,6 +18,7 @@
                             <p>Please check all details are correct before accepting or declining this trip.</p>
                             <form class="form-inline" role="form" method="POST" action="{{ route('store_response', $trip->user->first()->pivot->id) }}">
                                 {{ csrf_field() }}
+                                {{--<input type="hidden" name="email_response" value="true">--}}
                                 <input type="hidden" name="trip_id" value="{{ $trip->id }}">
                                 <input type="hidden" name="user_id" value="{{ $trip->user->first()->id }}">
                                 <select id='response' class="form-control" name="response">

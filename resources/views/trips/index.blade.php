@@ -21,7 +21,7 @@
 
                     <div class="card-body">
                         <div id="errors"></div>
-                        <table class="table table-responsive" id="table">
+                        <table class="table table-responsive myTable" id="table">
                             <thead class="thead-grey">
                                 <th scope="col">#</th>
                                 <th scope="col"></th>
@@ -70,6 +70,86 @@
     <script>
 
         jQuery(document).ready(function() {
+
+
+            $('.myTable .userData').on('change',  function(){
+                var myValue = $(this).data('pivot');
+
+                var response = $("select[name=response" + myValue + "]").val();
+                var accepted = $("input[name=accepted_hours" + myValue + "]").val();
+                var declined = $("input[name=declined_hours" + myValue + "]").val();
+
+                var hours = (accepted > declined ? accepted : declined);
+
+                if(response == 'declined') {
+                    accepted = 0;
+                    declined = hours;
+                    $("input[name=accepted_hours" + myValue + "]").val('0');
+                    $("input[name=declined_hours" + myValue + "]").val(hours);
+                } else {
+                    accepted = hours;
+                    declined = 0;
+                    $("input[name=accepted_hours" + myValue + "]").val(hours);
+                    $("input[name=declined_hours" + myValue + "]").val('0');
+                }
+
+
+                var formData = {
+                    '_token': '<?php echo csrf_token(); ?>',
+                    'accepted_hours': accepted,
+                    'declined_hours': declined,
+                    'one': $("input[name=one" + myValue + "]").val(),
+                    'oneHalf': $("input[name=oneHalf" + myValue + "]").val(),
+                    'two': $("input[name=two" + myValue + "]").val(),
+                    'bank': $("select[name=bank" + myValue + "]").val(),
+                    'mileage': $("input[name=mileage" + myValue + "]").val(),
+                    'unit': $("input[name=unit" + myValue + "]").val(),
+                    'note': $("input[name=note" + myValue + "]").val(),
+                    'response': response,
+                    'button': myValue
+                };
+
+                $.ajax({
+                    type: 'PUT',
+                    url: 'drivers/' + myValue,
+                    data: formData,
+                    dataType: 'json',
+                    success: function (data) {
+                        // info.hide().find('ul').empty();
+                        // flash.find('p').append(data.message);
+                        // flash.slideDown();
+                        // $(".alert").delay(2500).addClass("in").slideUp(2000);
+
+                    },
+                    error: function (data) {
+
+                        // Log in the console
+                        var response = data.responseJSON;
+                        // console.log(errors);
+
+                        // or, what you are trying to achieve
+                        // render the response via js, pushing the error in your
+                        // blade page
+                        errorsHtml = '<div class="alert alert-danger"><ul>';
+
+                        $.each( response.errors, function( key, value ) {
+                            errorsHtml += '<li>'+ value + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
+
+
+                        $( '#errors' ).html( errorsHtml ); //appending to a <div id="form-errors"></div> inside form
+
+                        $('#errors').delay(2500).addClass("in").slideUp(3000);
+
+                    }
+
+                });
+
+                // window.location.reload(true);
+            });
+
+
 
 
 

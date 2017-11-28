@@ -52,6 +52,10 @@ class DriverEmail extends Controller
         $trip = $this->trip->singleTripUser($data);
         $user = $trip->user->first();
 
+        // Trigger the response event....
+
+        event(new \Fieldtrip\Events\tripResponse('This is a message from kieran, the event fired...'));
+
         if($storeResponse->get('response') == 'declined') {
             \Mail::to($user)
                 ->cc(config('app.coordinator'))

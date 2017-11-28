@@ -1,7 +1,7 @@
 @foreach($trip->user as $user)
     <form role="form" method="POST" action="{{ route('store_hours', $user->pivot->id) }}">
         {{ csrf_field() }}
-        <tr style="color: blue;">
+        <tr style="color: blue;" class="userData" data-pivot="{!! $user->pivot->id !!}">
             <td>
                 <select id='response' class="form-control form-control-sm" name="response{!! $user->pivot->id !!}" {!! $user->pivot->response == 'accepted' ? 'style="color:green; font-weight:bold;"' : ''  !!}>
                     <option value="">No Response</option>

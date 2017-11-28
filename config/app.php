@@ -187,7 +187,7 @@ return [
          */
         Fieldtrip\Providers\AppServiceProvider::class,
         Fieldtrip\Providers\AuthServiceProvider::class,
-        // Fieldtrip\Providers\BroadcastServiceProvider::class,
+         Fieldtrip\Providers\BroadcastServiceProvider::class,
         Fieldtrip\Providers\EventServiceProvider::class,
         Fieldtrip\Providers\RouteServiceProvider::class,
 
