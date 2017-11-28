@@ -38,7 +38,9 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '9dfe2c42e868cc3c6cf4'
+    key: '9dfe2c42e868cc3c6cf4',
+    cluster: 'us2',
+    encrypted: false
 });
 
 dt = require( 'datatables.net' );
