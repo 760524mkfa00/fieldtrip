@@ -57,5 +57,5 @@ window.Echo = new Echo({
 
 window.Echo.channel('test-channel')
     .listen('.NewMessage', (e) => {
-        $(".alert").text(e.data).fadeIn();
+        $(".alert").html(e.data).fadeIn();
 });

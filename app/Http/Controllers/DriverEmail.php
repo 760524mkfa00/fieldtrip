@@ -53,7 +53,7 @@ class DriverEmail extends Controller
         $user = $trip->user->first();
 
         // Trigger the response event....
-        $message = "{$user->first_name} {$user->last_name} has {$user->pivot->response} trip {$trip->field_trip_number}";
+        $message = "{$user->first_name} {$user->last_name} has {$user->pivot->response} trip #{$trip->field_trip_number}. <a href='javascript:window.location.reload(true)'>Please refresh...</a>";
 
         event(new \Fieldtrip\Events\tripResponse($message));
 
