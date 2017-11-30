@@ -20,6 +20,11 @@
                     </div>
 
                     <div class="card-body">
+
+                        <div class="alert alert-info" style="display:none;" role="alert">
+
+                        </div>
+
                         <div id="errors"></div>
                         <table class="table table-responsive myTable" id="table">
                             <thead class="thead-grey">

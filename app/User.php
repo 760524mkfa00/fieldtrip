@@ -132,8 +132,13 @@ class User extends Authenticatable
      */
     public function acceptedTotal($total, $adjustmentDate)
     {
+
+        // get all trips accepted after the adjustment date
+        $acceptedHours = $total->trip->filter( function ($value, $key) use ($adjustmentDate) {
+            return $value->trip_date > $adjustmentDate;
+        })->sum('pivot.accepted_hours');
+
         $adjustmentHours = $total->adjustments->where('adjDate', '=', $adjustmentDate)->first()->pivot->hours ?? 0.0;
-        $acceptedHours = $total->trip->where('trip_date', '>', $adjustmentDate)->sum('pivot.accepted_hours');
 
         return $adjustmentHours + $acceptedHours;
     }

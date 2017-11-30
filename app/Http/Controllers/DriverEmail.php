@@ -53,8 +53,9 @@ class DriverEmail extends Controller
         $user = $trip->user->first();
 
         // Trigger the response event....
+        $message = "{$user->first_name} {$user->last_name} has {$user->pivot->response} trip {$trip->field_trip_number}";
 
-        event(new \Fieldtrip\Events\tripResponse('This is a message from kieran, the event fired...'));
+        event(new \Fieldtrip\Events\tripResponse($message));
 
         if($storeResponse->get('response') == 'declined') {
             \Mail::to($user)

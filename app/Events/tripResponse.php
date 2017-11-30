@@ -35,4 +35,11 @@ class tripResponse implements ShouldBroadcast
     {
         return new Channel('test-channel');
     }
+
+
+    public function broadcastAs()
+    {
+        return 'NewMessage';
+    }
+
 }
