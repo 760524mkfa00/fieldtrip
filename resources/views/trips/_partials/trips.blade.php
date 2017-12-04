@@ -3,7 +3,7 @@
         <td colspan="13" style="background-color: azure; font-size: 1.5em; font-weight: bolder;">{!! $key !!}</td>
     </tr>
     @foreach($tripDate as $trip)
-        <tr style="{!! ($trip->user->count() ? '' : 'background-color: #ffe6e6') !!}">
+        <tr style="{!! ($trip->user->count() ? '' : 'background-color: #ffe6e6') !!}" class="search">
             <td><strong>
                     <a href="{{ route('edit_trip', $trip->id) }}" class="" style="color: red;">
                         {!! $trip->field_trip_number !!}

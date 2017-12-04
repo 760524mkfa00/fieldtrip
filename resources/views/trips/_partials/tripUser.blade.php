@@ -49,6 +49,7 @@
             </td>
 
             <td><button type="submit" name="button" class="small" value="{!! $user->pivot->id !!}">Save</button></td>
+            <td></td>
         </tr>
     </form>
 @endforeach

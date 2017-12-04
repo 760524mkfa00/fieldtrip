@@ -28,18 +28,23 @@
                         <div id="errors"></div>
                         <table class="table table-responsive myTable" id="table">
                             <thead class="thead-grey">
-                                <th scope="col">#</th>
-                                <th scope="col"></th>
-                                <th scope="col" width="7%">Pick Up Time</th>
-                                <th scope="col">Pick Up Location</th>
-                                <th scope="col" width="7%">Drop Off Time</th>
-                                <th scope="col">Drop Off Location</th>
-                                <th scope="col">Hours</th>
-                                <th scope="col">Students</th>
-                                <th scope="col" colspan="3">Note</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                                 <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col"></th>
+                                    <th scope="col" width="7%">Pick Up Time</th>
+                                    <th scope="col">Pick Up Location</th>
+                                    <th scope="col" width="7%">Drop Off Time</th>
+                                    <th scope="col">Drop Off Location</th>
+                                    <th scope="col">Hours</th>
+                                    <th scope="col">Students</th>
+                                    <th colspan="3" scope="col">Note</th>
+                                    <!-- <th></th>
+                                    <th></th> -->
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                                
+
                                     <th></th>
                                     <th class="small"><strong>Name</strong></th>
                                     <th class="small"><strong>Unit</strong></th>
@@ -55,9 +60,12 @@
                                     <th class="small" ><strong>Bank</strong></th>
                                     <th class="small"><strong></strong></th>
                                     <th></th>
-                                </tr>
                             </thead>
-                            <tbody>
+                                
+                                    
+                            
+
+                            <tbody id="tableBody">
                                 @include('trips/_partials/trips')
                             </tbody>
                         </table>
@@ -74,8 +82,7 @@
 
     <script>
 
-        jQuery(document).ready(function() {
-
+        jQuery(document).ready(function() {   
 
             $('.myTable .userData').on('change',  function(){
                 var myValue = $(this).data('pivot');
@@ -150,11 +157,7 @@
                     }
 
                 });
-
-                // window.location.reload(true);
             });
-
-
 
 
 
@@ -214,10 +217,6 @@
 
                 });
                 window.location.reload(true);
-                // window.location.href=self.location.href
-                // window.location.href=window.location.href
-                // info.hide().find('ul').empty();
-                // flash.find('p').empty();
             });
 
 
@@ -263,7 +262,6 @@
 
                 });
             });
-
         });
 
     </script>
