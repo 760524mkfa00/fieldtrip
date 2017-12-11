@@ -43,8 +43,7 @@
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                 </tr>
-                                
-
+                                <tr>
                                     <th></th>
                                     <th class="small"><strong>Name</strong></th>
                                     <th class="small"><strong>Unit</strong></th>
@@ -60,11 +59,8 @@
                                     <th class="small" ><strong>Bank</strong></th>
                                     <th class="small"><strong></strong></th>
                                     <th></th>
+                                </tr>    
                             </thead>
-                                
-                                    
-                            
-
                             <tbody id="tableBody">
                                 @include('trips/_partials/trips')
                             </tbody>
@@ -82,7 +78,16 @@
 
     <script>
 
+
+
         jQuery(document).ready(function() {   
+
+
+            // $(function () {
+            //     $('#myTable').DataTable({
+            //         dom: 'Bfrtip',
+            //     });
+            // });
 
             $('.myTable .userData').on('change',  function(){
                 var myValue = $(this).data('pivot');

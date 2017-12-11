@@ -7,9 +7,9 @@
                 <div class="card">
                     <div class="card-header">
                         Roles
-                        {{--                        @can('create', Fieldtrip\Role::class)--}}
-                        <a class="float-right btn btn-sm btn-primary" href="{{ route('create_role') }}">New Role</a>
-                        {{--@endcan--}}
+                        @can('create', Fieldtrip\Role::class)
+                            <a class="float-right btn btn-sm btn-primary" href="{{ route('create_role') }}">New Role</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <table class="table" id="table">
@@ -24,34 +24,7 @@
                                 </th>
                             </thead>
                             <tbody>
-                                @foreach($rolesAll as $role)
-                                    <tr>
-                                        <td><strong> {!! $role->id !!}</strong></td>
-                                        <td><strong> {!! $role->name !!}</strong></td>
-                                        <td>
-                                            @can('createPermission', Fieldtrip\Role::class)
-                                                <a class="float-left btn btn-sm btn-primary"
-                                                   href="{{ route('create_permission', $role->id) }}">Add Permission</a>
-                                            @endcan
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                    @foreach($role->permissions as $id => $permission)
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>{!! $id !!}</td>
-                                            <td>
-                                                @can('removePermission',$role)
-                                                    <a title="Remove"
-                                                       href="{!! URL::route('remove_permission', [$role->id, $id]) !!}"
-                                                       class="float-right"><i class="fa fa-times"></i>
-                                                        <a>
-                                                @endcan
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach
+                                @include('roles/_partials/roleLoop')
                             </tbody>
                         </table>
                     </div>

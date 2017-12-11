@@ -38,24 +38,21 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('list_users') }}">Users</a>
-                                <a class="dropdown-item" href="{{ route('list_role') }}">Roles</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adjustments <span class="caret"></span></a>
 
                             <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" href="{{ route('list_adjustments') }}">Adjustments</a>
                             </div>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('list_users') }}">Users</a>
+                                <a class="dropdown-item" href="{{ route('list_role') }}">Roles</a>
+                            </div>
+                        </li>
                     @endcan
-
-
-
                 @endif
             </ul>
 
