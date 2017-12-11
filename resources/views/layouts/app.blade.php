@@ -12,7 +12,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <style>
+        .scroll-to-top {
+            position: fixed;
+            right: 15px;
+            bottom: 3px;
+            display: none;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            color: white;
+            background: rgba(52, 58, 64, 0.5);
+            line-height: 45px;
+        }
+    </style>
 
     <!-- Scripts -->
     <script>
@@ -21,7 +34,7 @@
         ]) !!};
     </script>
 </head>
-<body>
+<body id="page-top">
     <div id="app">
 
         @include('_partials/menu')
@@ -57,6 +70,11 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     @yield('footer')
+
+    <a class="scroll-to-top rounded" href="#page-top" style="display: hidden;">
+        <i class="fa fa-angle-up"></i>
+    </a>
+
     <script>
         $('.flash_message').delay(3500).addClass("in").slideUp(3000);
 
@@ -66,7 +84,23 @@
             }).ajaxStop(function () {
                 $("#mydiv").hide();
             });
-        });
+
+
+            !function (e) {
+                "use strict";
+                    e(document).scroll(function () {
+                    e(this).scrollTop() > 100 ? e(".scroll-to-top").fadeIn() : e(".scroll-to-top").fadeOut()
+                }), e('[data-toggle="tooltip"]').tooltip(), e(document).on("click", "a.scroll-to-top", function (o) {
+                    var a = e(this);
+                    e("html, body").stop().animate({ scrollTop: 0 }, "slow"), o.preventDefault()
+                })
+            }(jQuery);
+
+
+
+
+
+});
     </script>
 
 </body>
