@@ -267,6 +267,8 @@
 
                 });
             });
+
+            $('#start_range').datepicker();
         });
 
     </script>
